@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Call Manager</string>
+    <string name="app_name">CALL MANAGER</string>
+    <string name="ANODYNE">POWERED BY ANODYNE</string>
+    <string name="partner">P A R T N E R</string>
+    <string name="username">نام کاربری</string>
+    <string name="password">رمز عبور</string>
+    <string name="login">ورود</string>
+    <string name="login_page">صفحه ورود</string>
+    <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
+
 </resources>
