@@ -11,8 +11,9 @@ import com.test.callmanager.R;
 public class MyConstant {
 
 
-    public static final int SPLSH_SCREEN_DURATION =3000;
+    public static final int SPLSH_SCREEN_DURATION =1000;
 
 
-
+    public static final String SHARED_PREFERENCES_NAME = "my_share";
+    public static final String LOGIN_KEY = "login_key";
 }

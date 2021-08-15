@@ -1,38 +1,94 @@
 package com.test.callmanager.activities;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.test.callmanager.fragments.LogInFragment;
 import com.test.callmanager.R;
+import com.test.callmanager.classes.MyAdaptor;
+import com.test.callmanager.classes.MySharedPreferences;
+import com.test.callmanager.models.LoginInfo;
+import com.test.callmanager.models.SessionInfo;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    LogInFragment logInFragment;
+    TextView tvUserName;
+    TextView tvCodes;
+
+    RecyclerView rvSession;
+    MyAdaptor myAdaptor;
+
+    LoginInfo loginInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+        findViews();
         init();
-        loadFragment(logInFragment);
+        setUpList();
 
 
     }
 
-    private void init() {
+    private void findViews() {
 
-        logInFragment =new LogInFragment();
+        tvUserName=findViewById(R.id.tv_username);
+        tvCodes=findViewById(R.id.tv_codes);
+        rvSession=findViewById(R.id.rv_session);
     }
 
+    private void init(){
 
-    private void loadFragment(Fragment fragment) {
+        loginInfo= MySharedPreferences.getInstance(MainActivity.this).getLoginInfo();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fl_fragment_container,fragment).commit();
+        tvUserName.setText("نام کاربری"+":"+loginInfo.getUserName());
+
+
+
+    }
+
+    private void setUpList() {
+
+        ArrayList<SessionInfo> sessionList = new ArrayList<>();
+        {
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+
+        }
+
+        myAdaptor=new MyAdaptor(MainActivity.this,sessionList);
+        rvSession.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        rvSession.setAdapter(myAdaptor);
 
     }
 
