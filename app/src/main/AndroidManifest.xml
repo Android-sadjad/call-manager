@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.CallManager">
-        <activity android:name=".activities.LogInActivity"></activity>
+        <activity android:name=".activities.SessionActiviy"></activity>
+        <activity android:name=".activities.LogInActivity" />
         <activity
             android:name=".activities.SplashScreen"
             android:configChanges="orientation|keyboard"

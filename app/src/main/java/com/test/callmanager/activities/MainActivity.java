@@ -1,14 +1,16 @@
 package com.test.callmanager.activities;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.callmanager.R;
-import com.test.callmanager.classes.MyAdaptor;
+import com.test.callmanager.classes.MainAdapter;
 import com.test.callmanager.classes.MySharedPreferences;
 import com.test.callmanager.models.LoginInfo;
 import com.test.callmanager.models.SessionInfo;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCodes;
 
     RecyclerView rvSession;
-    MyAdaptor myAdaptor;
+    MainAdapter myAdaptor;
 
     LoginInfo loginInfo;
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         findViews();
         init();
         setUpList();
+
+
 
 
     }
@@ -54,38 +58,43 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     }
 
     private void setUpList() {
 
         ArrayList<SessionInfo> sessionList = new ArrayList<>();
         {
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
-            sessionList.add(new SessionInfo("دانشگاه","جلسه با رئیس دانشگاه سجاد"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
+
+
 
         }
 
-        myAdaptor=new MyAdaptor(MainActivity.this,sessionList);
+        myAdaptor=new MainAdapter(MainActivity.this,sessionList);
         rvSession.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         rvSession.setAdapter(myAdaptor);

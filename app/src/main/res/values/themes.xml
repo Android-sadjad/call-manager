@@ -5,7 +5,7 @@
 
         <item name="colorPrimary">@color/navy_blue_900</item>
         <item name="colorPrimaryVariant">@color/navy_blue_900</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/white_90</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

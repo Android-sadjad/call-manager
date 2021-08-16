@@ -14,12 +14,12 @@ import com.test.callmanager.models.SessionInfo;
 
 import java.util.ArrayList;
 
-public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.ViewHolder> {
+public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHolder> {
 
     Context context;
     ArrayList<SessionInfo> sessionList;
 
-    public MyAdaptor(Context context, ArrayList<SessionInfo> sessionList) {
+    public SessionAdapter(Context context, ArrayList<SessionInfo> sessionList) {
         this.sessionList = sessionList;
         this.context = context;
     }
@@ -29,7 +29,7 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View View = layoutInflater.inflate(R.layout.rv_item, parent, false);
+        View View = layoutInflater.inflate(R.layout.rv_item_session, parent, false);
 
         return new ViewHolder(View);
 
@@ -38,28 +38,28 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.tvName.setText(sessionList.get(position).getName());
-        holder.tvDescription.setText(sessionList.get(position).getDescription());
+//        holder.tvTitle.setText(sessionList.get(position).getTitle());
+//        holder.tvPhoneNumber.setText(sessionList.get(position).getPhoneNumber());
 
     }
 
     @Override
     public int getItemCount() {
-        return sessionList.size();
+        return 20;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-       TextView tvName;
-       TextView tvDescription;
+       TextView tvTitle;
+       TextView tvPhoneNumber;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvName=itemView.findViewById(R.id.tv_name);
-            tvDescription=itemView.findViewById(R.id.tv_description);
+            tvTitle =itemView.findViewById(R.id.tv_title);
+            tvPhoneNumber =itemView.findViewById(R.id.tv_phone_number);
 
 
         }

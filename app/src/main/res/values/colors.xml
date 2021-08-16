@@ -7,7 +7,9 @@
     <color name="teal_700">#FF018786</color>
 
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white_80">#ECF2F4</color>
+    <color name="white_90">#D7E9F1</color>
+    <color name="white_100">#F1F1F1</color>
 
 
     <color name="navy_blue_200">#6666FF</color>
@@ -17,7 +19,7 @@
     <color name="navy_blue_900">#000C66</color>
 
 
-    <color name="gold_300">#ffd700</color>
+    <color name="gold_300">#F0DD56</color>
     <color name="gold_600">#daa520</color>
     <color name="gold_900">#b8860b</color>
 

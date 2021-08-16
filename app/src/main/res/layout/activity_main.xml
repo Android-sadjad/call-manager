@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy_blue_900"
+    android:background="@color/white_90"
     tools:context=".activities.MainActivity">
 
     <com.google.android.material.card.MaterialCardView
@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/white_80"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_20sdp"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/gold_900"
-        app:strokeWidth="3dp">
+        app:strokeColor="@color/gold_300"
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -51,6 +51,15 @@
                 android:text="کد های شما:\n123456\n654321\n987654"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"/>
+
+            <ImageView
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_130sdp"
+                android:src="@drawable/bg_businessman"
+                android:alpha="0.3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
