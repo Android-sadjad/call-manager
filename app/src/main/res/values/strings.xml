@@ -8,5 +8,14 @@
     <string name="login">ورود</string>
     <string name="login_page">صفحه ورود</string>
     <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
+    <string name="meeting_result">نتیجه جلسه</string>
+    <string name="agent">نام نماینده فرد مقابل</string>
+    <string name="situation">وضعیت جلسه</string>
+    <string name="price">مبلغ تراکنش</string>
+    <string name="priority">اولویت</string>
+    <string name="date_meet">تاریخ جلسه</string>
+    <string name="duratoin_meet">مدت جلسه</string>
+    <string name="description">توضیحات</string>
+    <string name="submit_result">ثبت نتیجه </string>
 
 </resources>

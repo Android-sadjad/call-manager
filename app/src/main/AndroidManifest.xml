@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.test.callmanager">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -11,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.CallManager">
-        <activity android:name=".activities.SessionActiviy"></activity>
+        <activity android:name=".activities.ResultActivity">
+
+        </activity>
+        <activity
+            android:name=".activities.SessionActiviy"
+            >
+
+        </activity>
         <activity android:name=".activities.LogInActivity" />
         <activity
             android:name=".activities.SplashScreen"

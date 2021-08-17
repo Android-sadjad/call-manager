@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.test.callmanager.R;
-import com.test.callmanager.classes.MainAdapter;
-import com.test.callmanager.classes.MySharedPreferences;
 import com.test.callmanager.classes.SessionAdapter;
 import com.test.callmanager.models.LoginInfo;
 import com.test.callmanager.models.SessionInfo;
@@ -21,7 +24,17 @@ public class SessionActiviy extends AppCompatActivity {
     RecyclerView rvSession;
     SessionAdapter sessionAdapter;
 
+    TextView tvCall;
+    TextView tvResult;
+
+    TextView tvTitle;
+    TextView tvCity;
+    TextView tvArea;
+    TextView tvPhone;
+
     LoginInfo loginInfo;
+
+    boolean callSelected=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +45,18 @@ public class SessionActiviy extends AppCompatActivity {
         findViews();
         init();
         setUpList();
+        configuration();
     }
 
     private void findViews() {
 
         rvSession=findViewById(R.id.rv_session);
+        tvCall=findViewById(R.id.tv_call);
+        tvResult=findViewById(R.id.tv_result);
+        tvTitle=findViewById(R.id.tv_session_title);
+        tvCity=findViewById(R.id.tv_city);
+        tvArea=findViewById(R.id.tv_area);
+        tvPhone =findViewById(R.id.tv_phone);
     }
 
     private void init(){
@@ -59,5 +79,41 @@ public class SessionActiviy extends AppCompatActivity {
 
         rvSession.setAdapter(sessionAdapter);
 
+    }
+
+    private void configuration(){
+
+        tvCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                callSelected=true;
+                Uri uri=Uri.parse("tel:"+tvPhone.getText().toString().trim());
+                Intent intent=new Intent(Intent.ACTION_DIAL,uri);
+                startActivity(intent);
+
+
+            }
+        });
+
+        tvResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callSelected=false;
+            startActivity(new Intent(SessionActiviy.this,ResultActivity.class));
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(callSelected){
+            Toast.makeText(this, "لطفا ابتدا نتیجه جلسه را وارد کنید.", Toast.LENGTH_SHORT).show();
+
+        }else
+            finish();
     }
 }
