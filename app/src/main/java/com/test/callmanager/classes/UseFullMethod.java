@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.test.callmanager.R;
 
-public class MyUtilsMethod {
+public class UseFullMethod {
 
     public static int getScreenWidth() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;

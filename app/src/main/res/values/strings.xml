@@ -2,23 +2,49 @@
     <string name="app_name">صدق</string>
     <string name="sedgh">S E D G H</string>
     <string name="ANODYNE">POWERED BY ANODYNE</string>
-    <string name="partner">P A R T N E R</string>
+
+
+    <string name="login_page">صفحه ورود</string>
     <string name="username">نام کاربری</string>
     <string name="password">رمز عبور</string>
     <string name="login">ورود</string>
-    <string name="login_page">صفحه ورود</string>
-    <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
+
+
+    <string name="sample_user_name">نام کاربری: محمد</string>
+    <string name="session_name">نام جلسه</string>
+    <string name="sample_description">توضیحات کوتاه</string>
+
+
+    <string name="sample_title">عنوان : جسله کاری</string>
+    <string name="sample_city">شهر:مشهد</string>
+    <string name="sample_area">منظقه:۲</string>
+    <string name="call">تماس</string>
     <string name="meeting_result">نتیجه جلسه</string>
+
+
+    <string name="sample_support_name">پشتیبان : مهدی</string>
+    <string name="sample_agent_name">نماینده : محمد</string>
+    <string name="sample_situation">وضعیت : در جریان</string>
+    <string name="sample_price">مبلغ: ۱۰۰۰۰۰۰</string>
+    <string name="sample_priority">اولیت : بالا</string>
+    <string name="sample_date">تاریخ: ۱۴۰۰/۰۵/۲۵</string>
+    <string name="sample_session_duration">مدت جلسه : ۲۵ دقیقه</string>
+
+
     <string name="agent">نام نماینده فرد مقابل</string>
+    <string name="support_name">نام پشتیبان</string>
     <string name="situation">وضعیت جلسه</string>
-    <string name="price">مبلغ تراکنش</string>
     <string name="priority">اولویت</string>
     <string name="date_meet">تاریخ جلسه</string>
+    <string name="price">مبلغ تراکنش</string>
     <string name="duratoin_meet">مدت جلسه</string>
     <string name="description">توضیحات</string>
     <string name="submit_result">ثبت نتیجه </string>
-    <string name="support_name">نام پشتیبان</string>
+
     <string name="rial">ریال</string>
     <string name="minute">دقیقه</string>
+    <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
+    <string name="one">1</string>
+
 
 </resources>

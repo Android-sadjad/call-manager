@@ -8,20 +8,18 @@
     tools:context=".activities.MainActivity">
 
     <com.google.android.material.card.MaterialCardView
-
-        android:id="@+id/cl_profile"
+        android:id="@+id/cv_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
         android:backgroundTint="@color/white_80"
         app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="@dimen/_20sdp"
+        app:cardElevation="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/gold_300"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/_1sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/_15sdp">
@@ -30,36 +28,35 @@
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/peyda_bold"
-                android:text="نام کاربری: محمد"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 android:layout_margin="@dimen/_5sdp"
-                />
+                android:fontFamily="@font/peyda_bold"
+                android:text="@string/sample_user_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_codes"
-                android:layout_margin="@dimen/_5sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                app:layout_constraintTop_toBottomOf="@id/tv_username"
                 android:fontFamily="@font/peyda_regular"
                 android:gravity="center|right"
                 android:text="کد های شما:\n123456\n654321\n987654"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"/>
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
             <ImageView
                 android:layout_width="@dimen/_130sdp"
                 android:layout_height="@dimen/_130sdp"
-                android:src="@drawable/bg_businessman"
                 android:alpha="0.3"
-                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/bg_businessman"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -67,7 +64,6 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/rv_session"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -75,7 +71,7 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_profile" />
+        app:layout_constraintTop_toBottomOf="@id/cv_profile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

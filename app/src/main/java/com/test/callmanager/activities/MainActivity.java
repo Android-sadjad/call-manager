@@ -1,10 +1,8 @@
 package com.test.callmanager.activities;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCodes;
 
     RecyclerView rvSession;
-    MainAdapter myAdaptor;
+    MainAdapter mainAdapter;
 
     LoginInfo loginInfo;
 
@@ -33,31 +31,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         findViews();
         init();
         setUpList();
-
-
-
-
     }
 
     private void findViews() {
 
-        tvUserName=findViewById(R.id.tv_username);
-        tvCodes=findViewById(R.id.tv_codes);
-        rvSession=findViewById(R.id.rv_session);
+        tvUserName = findViewById(R.id.tv_username);
+        tvCodes = findViewById(R.id.tv_codes);
+        rvSession = findViewById(R.id.rv_session);
     }
 
-    private void init(){
+    private void init() {
 
-        loginInfo= MySharedPreferences.getInstance(MainActivity.this).getLoginInfo();
+        loginInfo = MySharedPreferences.getInstance(MainActivity.this).getLoginInfo();
 
-        tvUserName.setText("نام کاربری"+":"+loginInfo.getUserName());
-
-
-
+        tvUserName.setText(getString(R.string.username) + ":" + loginInfo.getUserName());
 
 
     }
@@ -66,38 +56,37 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<SessionInfo> sessionList = new ArrayList<>();
         {
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-            sessionList.add(new SessionInfo("عنوان جلسه","09151438729"));
-
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
+            sessionList.add(new SessionInfo("عنوان جلسه", "09151438729"));
 
 
         }
 
-        myAdaptor=new MainAdapter(MainActivity.this,sessionList);
+        mainAdapter = new MainAdapter(MainActivity.this, sessionList);
         rvSession.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        rvSession.setAdapter(myAdaptor);
+        rvSession.setAdapter(mainAdapter);
 
     }
 

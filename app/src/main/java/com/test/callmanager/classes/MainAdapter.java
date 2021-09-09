@@ -1,7 +1,6 @@
 package com.test.callmanager.classes;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,15 +63,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-       TextView tvTitle;
-       TextView tvPhoneNumber;
+        TextView tvTitle;
+        TextView tvPhoneNumber;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvTitle =itemView.findViewById(R.id.tv_title);
-            tvPhoneNumber =itemView.findViewById(R.id.tv_phone_number);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvPhoneNumber = itemView.findViewById(R.id.tv_phone_number);
 
 
         }

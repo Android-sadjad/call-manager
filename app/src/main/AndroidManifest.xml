@@ -12,11 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.CallManager">
-        <activity android:name=".activities.ResultActivity">
+        <activity android:name=".activities.ResultActivity"
+            android:configChanges="orientation|keyboard"
+            android:screenOrientation="portrait">>
 
         </activity>
         <activity
             android:name=".activities.SessionActiviy"
+            android:configChanges="orientation|keyboard"
+            android:screenOrientation="portrait">
             >
 
         </activity>

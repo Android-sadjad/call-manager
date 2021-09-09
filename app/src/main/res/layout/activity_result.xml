@@ -8,7 +8,7 @@
     <View
         android:id="@+id/view_header"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/_280sdp"
         android:background="@color/navy_blue_900"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,27 +20,28 @@
         android:gravity="center"
         android:text="@string/meeting_result"
         android:textColor="@color/white_90"
-        android:textSize="@dimen/text_size_Xlarge"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/cv_login"
+        app:layout_constraintBottom_toTopOf="@id/cv_session_result"
         app:layout_constraintTop_toTopOf="@id/view_header" />
 
     <com.google.android.material.card.MaterialCardView
-
-        android:id="@+id/cv_login"
+        android:id="@+id/cv_session_result"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_350sdp"
-        android:layout_margin="10dp"
-        android:elevation="@dimen/spade_medium"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:elevation="@dimen/_5sdp"
         app:cardBackgroundColor="@color/white_100"
-        app:cardCornerRadius="@dimen/spade_medium"
-        app:cardElevation="@dimen/spade_xlarge"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_5sdp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/gold_300"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/_1sdp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -49,9 +50,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/spade_small"
-                android:layout_marginBottom="@dimen/spade_xlarge"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -61,7 +62,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_agent"
-                        style="@style/tie_style" />
+                        style="@style/tie_style"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +73,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_support_name"
-                        style="@style/tie_style" />
+                        style="@style/tie_style"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="20sp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:gravity="right|center"
                     android:layoutDirection="ltr"
                     android:orientation="horizontal">
@@ -87,16 +90,16 @@
                     <TextView
                         android:id="@+id/tv_situation_drop_down"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_marginHorizontal="@dimen/_20sdp"
                         android:background="@drawable/bg_white_gold"
                         android:drawableStart="@drawable/ic_arrow_bottom"
                         android:fontFamily="@font/peyda_bold"
                         android:gravity="center"
-                        android:paddingRight="10dp"
-                        android:text="وضعیت"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:text="@string/situation"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/_12ssp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -105,7 +108,7 @@
                         android:gravity="center|right"
                         android:text="@string/situation"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold" />
 
 
@@ -128,22 +131,22 @@
                         android:gravity="right"
                         android:text="۱ پایین ترین و ۱۰ بالاترین "
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_priority_drop_down"
                         android:layout_width="@dimen/_65sdp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:background="@drawable/bg_white_gold"
                         android:drawableStart="@drawable/ic_arrow_bottom"
                         android:fontFamily="@font/peyda_bold"
                         android:gravity="center"
                         android:paddingRight="@dimen/_10sdp"
-                        android:text="1"
+                        android:text="@string/one"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/_14ssp" />
 
                     <TextView
                         android:id="@+id/tv_priority"
@@ -153,7 +156,7 @@
                         android:gravity="center|right"
                         android:text="@string/priority"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold" />
 
 
@@ -164,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/_15ssp"
                     android:gravity="right"
                     android:layoutDirection="ltr"
                     android:orientation="horizontal">
@@ -175,7 +178,6 @@
                         android:layout_height="wrap_content"
                         android:hint="YYYY"
                         android:inputType="number"
-
                         android:maxLength="4" />
 
                     <TextView
@@ -203,7 +205,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="@dimen/_15sdp"
                         android:hint="DD"
                         android:inputType="number"
                         android:maxLength="2" />
@@ -221,10 +223,10 @@
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:visibility="gone"
                     android:id="@+id/cl_price"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <com.google.android.material.textfield.TextInputLayout
 
@@ -297,12 +299,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/til_style"
-                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:hint="@string/description">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_description"
-                        style="@style/tie_style" />
+                        style="@style/tie_style"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="3" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -318,11 +323,11 @@
         android:layout_height="@dimen/_40sdp"
         android:backgroundTint="@color/navy_blue_900"
         app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/spade_2xlarge"
-        app:layout_constraintBottom_toBottomOf="@id/cv_login"
+        app:cardElevation="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="@id/cv_session_result"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_login"
+        app:layout_constraintTop_toBottomOf="@id/cv_session_result"
         app:strokeColor="@color/gold_300"
         app:strokeWidth="1dp">
 
@@ -334,7 +339,7 @@
             android:gravity="center"
             android:text="@string/submit_result"
             android:textColor="@color/white_90"
-            android:textSize="@dimen/text_size_Xlarge" />
+            android:textSize="@dimen/_16ssp" />
     </com.google.android.material.card.MaterialCardView>
 
 

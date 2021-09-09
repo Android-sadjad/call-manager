@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/navy_blue_900"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@color/navy_blue_900"
     tools:context=".activities.SplashScreen">
 
 
@@ -15,31 +14,27 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="9"
-        android:rotationX="1"
-        android:elevation="@dimen/spade_2xlarge"
         android:src="@drawable/ic_call" />
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/peyda_regular"
         android:gravity="center"
         android:text="@string/sedgh"
         android:textColor="@color/white_90"
-        android:fontFamily="@font/peyda_regular"
-        android:textSize="@dimen/text_size_Xlarge" />
-
+        android:textSize="@dimen/_20ssp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="center"
         android:text="@string/ANODYNE"
         android:textColor="@color/white_90"
-        android:textSize="@dimen/text_size_small" />
+        android:textSize="@dimen/_10ssp" />
 
 
 </LinearLayout>

@@ -2,22 +2,28 @@ package com.test.callmanager.classes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 import com.test.callmanager.models.LoginInfo;
 
 public class MySharedPreferences {
 
-    Context context;
-
     private static Gson gson;
+    private static MySharedPreferences mySharedPreferences = null;
+    Context context;
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
-
 
     //////////////////////////////////////////////////////////////////////////////////
+    SharedPreferences.Editor editor;
 
-    private static MySharedPreferences mySharedPreferences = null;
+    private MySharedPreferences(Context context) {
+
+        sharedPreferences = context.getSharedPreferences(MyConstant.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        this.context = context;
+
+    }
 
     public static MySharedPreferences getInstance(Context context) {
 
@@ -28,39 +34,26 @@ public class MySharedPreferences {
 
         return mySharedPreferences;
     }
-
-    private MySharedPreferences(Context context) {
-
-        sharedPreferences = context.getSharedPreferences(MyConstant.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        this.context = context;
-
-    }
     //////////////////////////////////////////////////////////////////////////////////
 
+    public void putLoginInfo(LoginInfo loginInfo) {
 
-    public void putLoginInfo(LoginInfo loginInfo){
+        String logInString = gson.toJson(loginInfo, LoginInfo.class);
 
-
-        String logInString=gson.toJson(loginInfo,LoginInfo.class);
-
-        editor.putString(MyConstant.LOGIN_KEY,logInString).apply();
+        editor.putString(MyConstant.LOGIN_KEY, logInString).apply();
 
     }
 
-    public LoginInfo getLoginInfo(){
+    public LoginInfo getLoginInfo() {
 
-        String logInString=sharedPreferences.getString(MyConstant.LOGIN_KEY,null);
+        String logInString = sharedPreferences.getString(MyConstant.LOGIN_KEY, null);
 
-        if(logInString==null)
+        if (logInString == null)
             return null;
-        LoginInfo loginInfo=gson.fromJson(logInString,LoginInfo.class);
+        LoginInfo loginInfo = gson.fromJson(logInString, LoginInfo.class);
 
         return loginInfo;
     }
-
-
 
 
 }

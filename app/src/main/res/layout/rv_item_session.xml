@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_profile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-   android:layout_marginVertical="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_10sdp"
     android:backgroundTint="@color/white_80"
     app:cardCornerRadius="@dimen/_5sdp"
-    app:cardElevation="@dimen/_20sdp"
+    app:cardElevation="@dimen/_10sdp"
     app:layout_constraintTop_toTopOf="parent"
     app:strokeColor="@color/gold_300"
-    app:strokeWidth="1dp">
-
+    app:strokeWidth="@dimen/_1sdp">
 
     <LinearLayout
-        android:padding="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="2"
             android:orientation="horizontal">
 
-
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:orientation="vertical"
                 app:layout_constraintRight_toRightOf="parent"
@@ -37,25 +34,26 @@
 
                 <TextView
                     android:id="@+id/tv_price"
-                    style="@style/tv_style"
-                    android:text="مبلغ: ۱۰۰۰۰۰۰ " />
+                    style="@style/tv_session_style"
+                    android:text="@string/sample_price" />
 
                 <TextView
                     android:id="@+id/tv_priority"
-                    style="@style/tv_style"
-                    android:text="اولیت : بالا" />
+                    style="@style/tv_session_style"
+                    android:text="@string/sample_priority" />
 
                 <TextView
                     android:id="@+id/tv_date"
-                    style="@style/tv_style"
-                    android:text="تاریخ: ۱۴۰۰/۰۵/۲۵" />
+                    style="@style/tv_session_style"
+                    android:text="@string/sample_date" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:layoutDirection="ltr"
                 android:orientation="vertical"
@@ -64,47 +62,47 @@
 
                 <TextView
                     android:id="@+id/tv_support_name"
-                    style="@style/tv_style"
-                    android:text="پشتیبان : مهدی" />
+                    style="@style/tv_session_style"
+                    android:text="@string/sample_support_name" />
 
                 <TextView
                     android:id="@+id/tv_agent_name"
-                    style="@style/tv_style"
-                    android:text="نماینده : محمد" />
+                    style="@style/tv_session_style"
+                    android:text="@string/sample_agent_name" />
 
                 <TextView
                     android:id="@+id/tv_situation"
-                    style="@style/tv_style"
-                    android:text="وضعیت : در جریان" />
+                    style="@style/tv_session_style"
+                    android:text="@string/sample_situation" />
 
 
             </LinearLayout>
 
 
-
         </LinearLayout>
+
+        <TextView
+            style="@style/tv_session_style"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/sample_session_duration" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gold_300"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_height="@dimen/_1sdp"
             android:layout_marginHorizontal="@dimen/_5sdp"
-            />
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/gold_300" />
+
 
         <TextView
+            style="@style/tv_session_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            style="@style/tv_style"
-            android:text="توضیحات:\nجلسه بین دانشجویان دانشگاه سجاد و شرکت انودین در دانشگاه فردوسی"
-            />
-
+            android:text="توضیحات:\nجلسه بین دانشجویان دانشگاه سجاد و شرکت انودین در دانشگاه فردوسی" />
 
     </LinearLayout>
-
-
-
 
 
 </com.google.android.material.card.MaterialCardView>

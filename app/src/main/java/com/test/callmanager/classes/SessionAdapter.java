@@ -51,15 +51,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-       TextView tvTitle;
-       TextView tvPhoneNumber;
-
+        TextView tvTitle;
+        TextView tvPhoneNumber;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvTitle =itemView.findViewById(R.id.tv_title);
-            tvPhoneNumber =itemView.findViewById(R.id.tv_phone_number);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvPhoneNumber = itemView.findViewById(R.id.tv_phone_number);
 
 
         }
