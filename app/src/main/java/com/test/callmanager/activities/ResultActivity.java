@@ -13,6 +13,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.textfield.TextInputLayout;
 import com.test.callmanager.R;
 
+import org.json.JSONObject;
+
 public class ResultActivity extends AppCompatActivity {
 
     TextView tvSubmitResult;
@@ -48,10 +50,21 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                sentResultToserver();
+
                 Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
         });
+    }
+
+    private void sentResultToserver(){
+
+        JSONObject jsonObjectResult=new JSONObject();
+
+
+
+
     }
 
     private void setUpMenu(){

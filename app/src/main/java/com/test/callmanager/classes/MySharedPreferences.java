@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.test.callmanager.models.LoginInfo;
+import com.test.callmanager.models.UserInfo;
 
 public class MySharedPreferences {
 
@@ -36,21 +36,21 @@ public class MySharedPreferences {
     }
     //////////////////////////////////////////////////////////////////////////////////
 
-    public void putLoginInfo(LoginInfo loginInfo) {
+    public void putUserInfo(UserInfo loginInfo) {
 
-        String logInString = gson.toJson(loginInfo, LoginInfo.class);
+        String logInString = gson.toJson(loginInfo, UserInfo.class);
 
         editor.putString(MyConstant.LOGIN_KEY, logInString).apply();
 
     }
 
-    public LoginInfo getLoginInfo() {
+    public UserInfo getUserInfo() {
 
         String logInString = sharedPreferences.getString(MyConstant.LOGIN_KEY, null);
 
         if (logInString == null)
             return null;
-        LoginInfo loginInfo = gson.fromJson(logInString, LoginInfo.class);
+        UserInfo loginInfo = gson.fromJson(logInString, UserInfo.class);
 
         return loginInfo;
     }

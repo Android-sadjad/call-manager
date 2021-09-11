@@ -8,6 +8,7 @@
     <string name="username">نام کاربری</string>
     <string name="password">رمز عبور</string>
     <string name="login">ورود</string>
+    <string name="enter_this_field">این فیلد را وارد کنید</string>
 
 
     <string name="sample_user_name">نام کاربری: محمد</string>
@@ -45,6 +46,7 @@
     <string name="minute">دقیقه</string>
     <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
     <string name="one">1</string>
+
 
 
 </resources>

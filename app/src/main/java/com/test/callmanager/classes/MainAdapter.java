@@ -48,7 +48,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
 
-                activity.startActivity(new Intent(activity, SessionActiviy.class));
+                Intent intent=new Intent(activity,SessionActiviy.class);
+
+                intent.putExtra(MyConstant.SESSION_INFO,sessionList.get(position));
+                activity.startActivity(intent);
 
             }
         });

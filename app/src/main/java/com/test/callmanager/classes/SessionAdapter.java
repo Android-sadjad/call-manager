@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.callmanager.R;
+import com.test.callmanager.models.SessionHistory;
 import com.test.callmanager.models.SessionInfo;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<SessionInfo> sessionList;
+    ArrayList<SessionHistory> sessionHistories;
 
-    public SessionAdapter(Context context, ArrayList<SessionInfo> sessionList) {
-        this.sessionList = sessionList;
+    public SessionAdapter(Context context, ArrayList<SessionHistory> sessionHistories) {
+        this.sessionHistories = sessionHistories;
         this.context = context;
     }
 

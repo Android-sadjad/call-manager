@@ -6,13 +6,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.test.callmanager.R;
+import com.test.callmanager.classes.MyConstant;
 import com.test.callmanager.classes.MySharedPreferences;
-import com.test.callmanager.classes.UseFullMethod;
-import com.test.callmanager.models.LoginInfo;
+import com.test.callmanager.models.UserInfo;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class LogInActivity extends AppCompatActivity {
@@ -49,11 +51,12 @@ public class LogInActivity extends AppCompatActivity {
                 if (evaluate()) {
 
 
-                    LoginInfo loginInfo = new LoginInfo(tieUserName.getText().toString().trim(), tiePassword.getText().toString().trim());
-                    sendLoginRequest(loginInfo);
-                    MySharedPreferences.getInstance(LogInActivity.this).putLoginInfo(loginInfo);
+                    if(sendLoginRequest()){
 
-                    startActivity(new Intent(LogInActivity.this, MainActivity.class));
+                        startActivity(new Intent(LogInActivity.this, MainActivity.class));
+                    }
+
+
                 }
             }
         });
@@ -61,23 +64,64 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    private void sendLoginRequest(LoginInfo loginInfo) {
+    private boolean sendLoginRequest() {
 
+        String userName=tieUserName.getText().toString();
+        String password=tiePassword.getText().toString();
+
+        JSONObject jsonObjectLogin=new JSONObject();
+
+        try {
+            jsonObjectLogin.put(MyConstant.USER_NAME,userName);
+            jsonObjectLogin.put(MyConstant.PASSWORD,password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //send json to server
+
+        JSONObject jsonObjectUserInfo=new JSONObject();
+
+        try {
+            jsonObjectUserInfo.put(MyConstant.ID,"123");
+            jsonObjectUserInfo.put(MyConstant.USER_NAME,"mohammad");
+            jsonObjectUserInfo.put(MyConstant.PASSWORD,"654321");
+            jsonObjectUserInfo.put(MyConstant.PERCENT,"45");
+            jsonObjectUserInfo.put(MyConstant.NATIONAL_CODE,"0934359809");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        UserInfo userInfo=new UserInfo();
+        try {
+            userInfo.setId(jsonObjectUserInfo.getString(MyConstant.ID));
+            userInfo.setUserName(jsonObjectUserInfo.getString(MyConstant.USER_NAME));
+            userInfo.setPassword(jsonObjectUserInfo.getString(MyConstant.PASSWORD));
+            userInfo.setPercent(jsonObjectUserInfo.getString(MyConstant.PERCENT));
+            userInfo.setNationalCode(jsonObjectUserInfo.getString(MyConstant.NATIONAL_CODE));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        MySharedPreferences.getInstance(LogInActivity.this).putUserInfo(userInfo);
+
+        return true;
 
     }
 
 
     private boolean evaluate() {
 
-        if (tieUserName.getText().length() == 0) {
+        if (tieUserName.getText().toString().trim().length() == 0) {
             tieUserName.requestFocus();
-            tieUserName.setError("این فیلد را وارد کنید");
+            tieUserName.setError(getString(R.string.enter_this_field));
             return false;
         }
 
-        if (tiePassword.getText().length() == 0) {
+        if (tiePassword.getText().toString().trim().length() == 0) {
             tiePassword.requestFocus();
-            tiePassword.setError("این فیلد را وارد کنید");
+            tiePassword.setError(getString(R.string.enter_this_field));
             return false;
         }
 

@@ -11,9 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.JsonObject;
 import com.test.callmanager.R;
+import com.test.callmanager.classes.MyConstant;
 import com.test.callmanager.classes.SessionAdapter;
+import com.test.callmanager.models.SessionHistory;
 import com.test.callmanager.models.SessionInfo;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -38,6 +45,7 @@ public class SessionActiviy extends AppCompatActivity {
         setContentView(R.layout.activity_session_activiy);
 
         findViews();
+        init();
         setUpList();
         configuration();
     }
@@ -56,11 +64,70 @@ public class SessionActiviy extends AppCompatActivity {
 
     }
 
+    private void init(){
+
+
+        SessionInfo sessionInfo= (SessionInfo) getIntent().getSerializableExtra(MyConstant.SESSION_INFO);
+
+        tvTitle.setText(sessionInfo.getTitle());
+        tvPhone.setText(sessionInfo.getPhoneNumber());
+        tvCity.setText(sessionInfo.getCity());
+        tvArea.setText(sessionInfo.getArea());
+
+
+    }
+
     private void setUpList() {
 
-        ArrayList<SessionInfo> sessionList = new ArrayList<>();
+        ArrayList<SessionHistory> sessionHistories = new ArrayList<>();
+        //
+        JSONArray jsonArrayHistoryList=new JSONArray();
 
-        sessionAdapter = new SessionAdapter(SessionActiviy.this, sessionList);
+        JSONObject jsonObjectHistory=new JSONObject();
+        try {
+            jsonObjectHistory.put(MyConstant.SUPPORT_NAME,"پشتیبان:مهدی");
+            jsonObjectHistory.put(MyConstant.AGENT_NAME,"نماینده:محمد");
+            jsonObjectHistory.put(MyConstant.SITUATION,"وضعیت:انجام شده");
+            jsonObjectHistory.put(MyConstant.PRICE,"مبلغ:120000");
+            jsonObjectHistory.put(MyConstant.PRIORITY,"اولیت : 4");
+            jsonObjectHistory.put(MyConstant.DATE,"تاریخ :1400/06/20");
+            jsonObjectHistory.put(MyConstant.DURATION,"مدت جلسه:20 دقیقه");
+            jsonObjectHistory.put(MyConstant.DESCRIPTION,"توضیحات :\nجلسه بین دانشجویان سجاد و فردوسی");
+
+
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+        jsonArrayHistoryList.put(jsonObjectHistory);
+
+
+        for (int i=0;i<jsonArrayHistoryList.length();i++){
+
+            JSONObject jsonObject =jsonArrayHistoryList.getJSONObject(i);
+            SessionHistory sessionHistory=new SessionHistory();
+
+            sessionHistory.setSupportName(jsonObject.getString(MyConstant.SUPPORT_NAME));
+            sessionHistory.setAgentName(jsonObject.getString(MyConstant.AGENT_NAME));
+            sessionHistory.setSituation(jsonObject.getString(MyConstant.SITUATION));
+            sessionHistory.setPrice(jsonObject.getString(MyConstant.PRICE));
+            sessionHistory.setPriority(jsonObject.getString(MyConstant.PRIORITY));
+            sessionHistory.setDate(jsonObject.getString(MyConstant.DATE));
+            sessionHistory.setDuration(jsonObject.getString(MyConstant.DURATION));
+            sessionHistory.setDescription(jsonObject.getString(MyConstant.DESCRIPTION));
+
+            sessionHistories.add(sessionHistory);
+        }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//
+        sessionAdapter = new SessionAdapter(SessionActiviy.this, sessionHistories);
         rvSession.setLayoutManager(new LinearLayoutManager(SessionActiviy.this));
 
         rvSession.setAdapter(sessionAdapter);
