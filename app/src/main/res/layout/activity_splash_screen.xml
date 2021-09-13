@@ -24,7 +24,7 @@
         android:gravity="center"
         android:text="@string/sedgh"
         android:textColor="@color/white_90"
-        android:textSize="@dimen/_20ssp" />
+        android:textSize="@dimen/tv_sedgh_splash_text_size" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         android:gravity="center"
         android:text="@string/ANODYNE"
         android:textColor="@color/white_90"
-        android:textSize="@dimen/_10ssp" />
+        android:textSize="@dimen/tv_anodin_splash_text_size" />
 
 
 </LinearLayout>

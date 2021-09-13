@@ -2,5 +2,93 @@
 <resources>
 
 
+<!-- login_activity-->
+<dimen name="view_login_height">@dimen/_180sdp</dimen>
+<dimen name="tv_header_login_text_size">@dimen/_18ssp</dimen>
+<dimen name="card_login_elevation">@dimen/_5sdp</dimen>
+<dimen name="card_login_radius">@dimen/_10sdp</dimen>
+<dimen name="card_stroke_width">2dp</dimen>
+<dimen name="button_card_view_login_width">@dimen/_200sdp</dimen>
+<dimen name="button_card_view_login_height">@dimen/_40sdp</dimen>
+<dimen name="button_card_view_login_radius">@dimen/_10sdp</dimen>
+<dimen name="button_card_view_login_elevation">@dimen/_5sdp</dimen>
+<dimen name="button_tv_login_text_size">@dimen/_14ssp</dimen>
+<dimen name="iv_logo_call_login_width">@dimen/_50sdp</dimen>
+<dimen name="iv_logo_call_login_height">@dimen/_50sdp</dimen>
+<dimen name="tv_sedgh_login_text_size">@dimen/_16ssp</dimen>
+<dimen name="tv_anodin_login_text_size">@dimen/_10ssp</dimen>
+<dimen name="tie_login_text_size">@dimen/_14ssp</dimen>
+
+
+    <!-- main_activity-->
+    <dimen name="card_main_elevation">@dimen/_10sdp</dimen>
+    <dimen name="card_main_radius">@dimen/_5sdp</dimen>
+    <dimen name="card_main_stroke_width">2dp</dimen>
+    <dimen name="tv_main_username_text_size">@dimen/_16ssp</dimen>
+    <dimen name="tv_code_text_size">@dimen/_14ssp</dimen>
+    <dimen name="image_card_main_width">@dimen/_130sdp</dimen>
+    <dimen name="image_card_main_height">@dimen/_130sdp</dimen>
+
+    <!-- result_activity-->
+    <dimen name="view_result_height">@dimen/_280sdp</dimen>
+    <dimen name="tv_header_result_text_size">@dimen/_18ssp</dimen>
+    <dimen name="card_result_elevation">@dimen/_5sdp</dimen>
+    <dimen name="card_result_radius">@dimen/_5sdp</dimen>
+    <dimen name="card_result_stroke_width">2dp</dimen>
+    <dimen name="tv_situation_drop_down_height">@dimen/_35sdp</dimen>
+    <dimen name="tv_situation_drop_down_text_size">@dimen/_12ssp</dimen>
+    <dimen name="tv_situation_text_size">@dimen/_16ssp</dimen>
+    <dimen name="tv_low_and_max">@dimen/_10ssp</dimen>
+    <dimen name="tv_priority_drop_down_width">@dimen/_65sdp</dimen>
+    <dimen name="tv_priority_drop_down_height">@dimen/_35sdp</dimen>
+    <dimen name="tv_priority_drop_down_text_size">@dimen/_14ssp</dimen>
+    <dimen name="tv_priority_text_size">@dimen/_16ssp</dimen>
+    <dimen name="tv_slash_text_size">@dimen/_14ssp</dimen>
+    <dimen name="tv_meet_history_text_size">@dimen/_14ssp</dimen>
+    <dimen name="tv_rial_text_size">@dimen/_14ssp</dimen>
+    <dimen name="tv_minute_text_size">@dimen/_14ssp</dimen>
+    <dimen name="button_card_view_result_width">@dimen/_200sdp</dimen>
+    <dimen name="button_card_view_result_height">@dimen/_40sdp</dimen>
+    <dimen name="button_card_view_result_radius">@dimen/_10sdp</dimen>
+    <dimen name="button_card_view_result_elevation">@dimen/_5sdp</dimen>
+    <dimen name="button_card_view_result_stroke_width">2dp</dimen>
+    <dimen name="button_tv_submit_text_size">@dimen/_16ssp</dimen>
+
+    <!-- session_activity-->
+    <dimen name="card_session_elevation">@dimen/_5sdp</dimen>
+    <dimen name="card_session_radius">@dimen/_5sdp</dimen>
+    <dimen name="card_session_stroke_width">2dp</dimen>
+    <dimen name="tv_session">@dimen/_16ssp</dimen>
+    <dimen name="image_card_session_width">@dimen/_130sdp</dimen>
+    <dimen name="image_card_session_height">@dimen/_130sdp</dimen>
+    <dimen name="button_card_view_session_width">@dimen/_130sdp</dimen>
+    <dimen name="button_card_view_session_height">@dimen/_35sdp</dimen>
+    <dimen name="button_card_view_session_radius">@dimen/_10sdp</dimen>
+    <dimen name="button_card_view_session_elevation">@dimen/_8sdp</dimen>
+    <dimen name="button_card_view_session_stroke_width">2dp</dimen>
+    <dimen name="button_tv_session_text_size">@dimen/_16ssp</dimen>
+
+
+    <!-- splash_screen_activity-->
+    <dimen name="tv_sedgh_splash_text_size">@dimen/_20ssp</dimen>
+    <dimen name="tv_anodin_splash_text_size">@dimen/_10ssp</dimen>
+
+    <!-- rv_item_main-->
+    <dimen name="card_rv_main_height">@dimen/_60sdp</dimen>
+    <dimen name="card_rv_main_radius">@dimen/_4sdp</dimen>
+    <dimen name="card_rv_main_elevation">@dimen/_5sdp</dimen>
+    <dimen name="card_rv_main_stroke_width">2dp</dimen>
+    <dimen name="tv_session_name_text_size">@dimen/_15ssp</dimen>
+    <dimen name="tv_phone_number_text_size">@dimen/_12ssp</dimen>
+
+    <!-- rv_item_session-->
+    <dimen name="card_rv_session_radius">@dimen/_5sdp</dimen>
+    <dimen name="card_rv_session_elevation">@dimen/_10sdp</dimen>
+    <dimen name="card_rv_session_stroke_width">2dp</dimen>
+
+
+
+
+
 
 </resources>

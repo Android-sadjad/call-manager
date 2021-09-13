@@ -5,11 +5,11 @@
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/_10sdp"
     android:backgroundTint="@color/white_80"
-    app:cardCornerRadius="@dimen/_5sdp"
-    app:cardElevation="@dimen/_10sdp"
+    app:cardCornerRadius="@dimen/card_rv_session_radius"
+    app:cardElevation="@dimen/card_rv_session_elevation"
     app:layout_constraintTop_toTopOf="parent"
     app:strokeColor="@color/gold_300"
-    app:strokeWidth="@dimen/_1sdp">
+    app:strokeWidth="@dimen/card_rv_session_stroke_width">
 
     <LinearLayout
         android:layout_width="match_parent"

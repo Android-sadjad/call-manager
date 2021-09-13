@@ -14,11 +14,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:backgroundTint="@color/white_80"
-        app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/card_session_radius"
+        app:cardElevation="@dimen/card_session_elevation"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/gold_300"
-        app:strokeWidth="@dimen/_1sdp">
+        app:strokeWidth="@dimen/card_session_stroke_width">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginBottom="@dimen/_10sdp"
@@ -59,8 +59,8 @@
 
 
             <ImageView
-                android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_width="@dimen/image_card_session_width"
+                android:layout_height="@dimen/image_card_session_height"
                 android:alpha="0.3"
                 android:src="@drawable/bg_businessman"
                 app:layout_constraintBottom_toBottomOf="parent"

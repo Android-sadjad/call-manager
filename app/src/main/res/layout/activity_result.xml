@@ -8,7 +8,7 @@
     <View
         android:id="@+id/view_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_280sdp"
+        android:layout_height="@dimen/view_result_height"
         android:background="@color/navy_blue_900"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,7 +20,7 @@
         android:gravity="center"
         android:text="@string/meeting_result"
         android:textColor="@color/white_90"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/tv_header_result_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/cv_session_result"
         app:layout_constraintTop_toTopOf="@id/view_header" />
@@ -32,16 +32,15 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_70sdp"
         android:layout_marginBottom="@dimen/_40sdp"
-        android:elevation="@dimen/_5sdp"
         app:cardBackgroundColor="@color/white_100"
-        app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/card_result_radius"
+        app:cardElevation="@dimen/card_result_elevation"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/gold_300"
-        app:strokeWidth="@dimen/_1sdp">
+        app:strokeWidth="@dimen/card_result_stroke_width">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -90,7 +89,7 @@
                     <TextView
                         android:id="@+id/tv_situation_drop_down"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="@dimen/tv_situation_drop_down_height"
                         android:layout_marginHorizontal="@dimen/_20sdp"
                         android:background="@drawable/bg_white_gold"
                         android:drawableStart="@drawable/ic_arrow_bottom"
@@ -99,7 +98,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:text="@string/situation"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/tv_situation_drop_down_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -108,7 +107,7 @@
                         android:gravity="center|right"
                         android:text="@string/situation"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_16ssp"
+                        android:textSize="@dimen/tv_situation_text_size"
                         android:textStyle="bold" />
 
 
@@ -131,13 +130,13 @@
                         android:gravity="right"
                         android:text="۱ پایین ترین و ۱۰ بالاترین "
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10ssp"
+                        android:textSize="@dimen/tv_low_and_max"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_priority_drop_down"
-                        android:layout_width="@dimen/_65sdp"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_width="@dimen/tv_priority_drop_down_width"
+                        android:layout_height="@dimen/tv_priority_drop_down_height"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:background="@drawable/bg_white_gold"
                         android:drawableStart="@drawable/ic_arrow_bottom"
@@ -146,7 +145,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:text="@string/one"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/tv_priority_drop_down_text_size" />
 
                     <TextView
                         android:id="@+id/tv_priority"
@@ -156,7 +155,7 @@
                         android:gravity="center|right"
                         android:text="@string/priority"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_16ssp"
+                        android:textSize="@dimen/tv_priority_text_size"
                         android:textStyle="bold" />
 
 
@@ -184,7 +183,7 @@ android:id="@+id/et_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="/"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/tv_slash_text_size" />
 
                     <EditText
 android:id="@+id/et_month"
@@ -199,7 +198,7 @@ android:id="@+id/et_month"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="/"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/tv_slash_text_size" />
 
                     <EditText
 android:id="@+id/et_day"
@@ -217,7 +216,7 @@ android:id="@+id/et_day"
                         android:gravity="right"
                         android:text="@string/date_meet"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/tv_meet_history_text_size"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -251,7 +250,7 @@ android:id="@+id/et_day"
                         android:alpha="0.5"
                         android:text="@string/rial"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/tv_rial_text_size"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -288,7 +287,7 @@ android:id="@+id/et_day"
                         android:alpha="0.5"
                         android:text="@string/minute"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/tv_minute_text_size"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -319,17 +318,17 @@ android:id="@+id/et_day"
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/button_card_view_result_width"
+        android:layout_height="@dimen/button_card_view_result_height"
         android:backgroundTint="@color/navy_blue_900"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/button_card_view_result_radius"
+        app:cardElevation="@dimen/button_card_view_result_elevation"
         app:layout_constraintBottom_toBottomOf="@id/cv_session_result"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_session_result"
         app:strokeColor="@color/gold_300"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/button_card_view_result_stroke_width">
 
         <TextView
             android:id="@+id/tv_submit_meet"
@@ -339,7 +338,7 @@ android:id="@+id/et_day"
             android:gravity="center"
             android:text="@string/submit_result"
             android:textColor="@color/white_90"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/button_tv_submit_text_size" />
     </com.google.android.material.card.MaterialCardView>
 
 

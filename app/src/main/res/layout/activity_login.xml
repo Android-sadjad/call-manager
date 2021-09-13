@@ -9,7 +9,7 @@
     <View
         android:id="@+id/view_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp"
+        android:layout_height="@dimen/view_login_height"
         android:background="@color/navy_blue_900"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="@string/login_page"
         android:textColor="@color/white_90"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/tv_header_login_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/cv_session_result"
         app:layout_constraintTop_toTopOf="@id/view_header" />
@@ -32,16 +32,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:elevation="@dimen/_5sdp"
         app:cardBackgroundColor="@color/white_100"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/card_login_radius"
+        app:cardElevation="@dimen/card_login_elevation"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="@id/view_header"
         app:layout_constraintTop_toBottomOf="@id/view_header"
         app:strokeColor="@color/gold_300"
-        app:strokeWidth="@dimen/_1sdp">
+        app:strokeWidth="@dimen/card_stroke_width">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,11 +94,11 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/button_card_view_login_width"
+        android:layout_height="@dimen/button_card_view_login_height"
         android:backgroundTint="@color/navy_blue_900"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/button_card_view_login_radius"
+        app:cardElevation="@dimen/button_card_view_login_elevation"
         app:layout_constraintBottom_toBottomOf="@id/cv_session_result"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -115,7 +114,7 @@
             android:gravity="center"
             android:text="@string/login"
             android:textColor="@color/white_90"
-            android:textSize="@dimen/_14ssp" />
+            android:textSize="@dimen/button_tv_login_text_size" />
     </com.google.android.material.card.MaterialCardView>
 
 
@@ -129,8 +128,8 @@
 
 
         <ImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/iv_logo_call_login_width"
+            android:layout_height="@dimen/iv_logo_call_login_height"
             android:src="@drawable/ic_call_navy_blue" />
 
         <TextView
@@ -139,7 +138,7 @@
             android:fontFamily="@font/peyda_regular"
             android:text="@string/app_name"
             android:textColor="@color/navy_blue_900"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/tv_sedgh_login_text_size" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -147,7 +146,7 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:text="@string/ANODYNE"
             android:textColor="@color/navy_blue_900"
-            android:textSize="@dimen/_10ssp" />
+            android:textSize="@dimen/tv_anodin_login_text_size" />
 
     </LinearLayout>
 

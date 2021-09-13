@@ -19,7 +19,7 @@
         <item name="android:background">@color/white_100</item>
         <item name="android:gravity">center|right</item>
         <item name="android:inputType">text</item>
-        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:textSize">@dimen/tie_login_text_size</item>
         <item name="android:layout_marginLeft">@dimen/_10sdp</item>
         <item name="android:layout_marginRight">@dimen/_10sdp</item>
         <item name="android:textColorHint">@color/black</item>
@@ -29,13 +29,13 @@
 
     <style name="cv_session_activity_style">
 
-        <item name="android:layout_width">@dimen/_130sdp</item>
-        <item name="android:layout_height">@dimen/_35sdp</item>
+        <item name="android:layout_width">@dimen/button_card_view_session_width</item>
+        <item name="android:layout_height">@dimen/button_card_view_session_height</item>
         <item name="android:backgroundTint">@color/navy_blue_900</item>
-        <item name="cardCornerRadius">@dimen/_10sdp</item>
-        <item name="cardElevation">@dimen/_8sdp</item>
+        <item name="cardCornerRadius">@dimen/button_card_view_session_radius</item>
+        <item name="cardElevation">@dimen/button_card_view_session_elevation</item>
         <item name="strokeColor">@color/gold_300</item>
-        <item name="strokeWidth">@dimen/_1sdp</item>
+        <item name="strokeWidth">@dimen/button_card_view_session_stroke_width</item>
 
     </style>
 
@@ -46,7 +46,7 @@
         <item name="android:fontFamily">@font/peyda_regular</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white_90</item>
-        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textSize">@dimen/button_tv_session_text_size</item>
 
 
     </style>
@@ -57,7 +57,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/peyda_regular</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textSize">@dimen/tv_session</item>
         <item name="android:layout_margin">@dimen/_1sdp</item>
 
     </style>
