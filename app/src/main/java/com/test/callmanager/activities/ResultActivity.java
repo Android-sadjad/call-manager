@@ -3,6 +3,7 @@ package com.test.callmanager.activities;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,9 +11,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import com.test.callmanager.R;
+import com.test.callmanager.classes.MyConstant;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ResultActivity extends AppCompatActivity {
@@ -21,8 +24,18 @@ public class ResultActivity extends AppCompatActivity {
     TextView tvSituationMenu;
     TextView tvPriorityMenu;
 
+
     ConstraintLayout clPrice;
 
+    TextInputEditText tieAgent;
+    TextInputEditText tieSupportName;
+    TextInputEditText tieDurationMeet;
+    TextInputEditText tieDescription;
+    TextInputEditText tiePrice;
+
+    EditText etYear;
+    EditText etMonth;
+    EditText etDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +55,18 @@ public class ResultActivity extends AppCompatActivity {
         tvSituationMenu=findViewById(R.id.tv_situation_drop_down);
         tvPriorityMenu=findViewById(R.id.tv_priority_drop_down);
 
+        tieAgent=findViewById(R.id.tie_agent);
+        tieSupportName=findViewById(R.id.tie_support_name);
+        tieDescription=findViewById(R.id.tie_description);
+        tieDurationMeet=findViewById(R.id.tie_duration_meet);
+        tiePrice=findViewById(R.id.tie_price);
+
+        etDay=findViewById(R.id.et_day);
+        etMonth=findViewById(R.id.et_month);
+        etYear=findViewById(R.id.et_year);
+
+
+
         clPrice=findViewById(R.id.cl_price);
     }
 
@@ -50,7 +75,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sentResultToserver();
+                sentResultToServer();
 
                 Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
                 onBackPressed();
@@ -58,11 +83,44 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
-    private void sentResultToserver(){
+    private void sentResultToServer(){
+
+
+String agentName=tieAgent.getText().toString().trim();
+String supportName=tieSupportName.getText().toString().trim();
+String price=tiePrice.getText().toString().trim();
+String description=tieDescription.getText().toString().trim();
+String meetDuration=tieDurationMeet.getText().toString().trim();
+String years=etYear.getText().toString().trim();
+String months=etMonth.getText().toString().trim();
+String days=etDay.getText().toString().trim();
+String situation=tvSituationMenu.getText().toString().trim();
+String priority=tvPriorityMenu.getText().toString().trim();
 
         JSONObject jsonObjectResult=new JSONObject();
 
 
+        try {
+
+            jsonObjectResult.put(MyConstant.AGENT_NAME,agentName);
+            jsonObjectResult.put(MyConstant.SUPPORT_NAME,supportName);
+            jsonObjectResult.put(MyConstant.PRICE,price);
+            jsonObjectResult.put(MyConstant.DESCRIPTION,description);
+            jsonObjectResult.put(MyConstant.DURATION,meetDuration);
+            jsonObjectResult.put(MyConstant.YEAR,years);
+            jsonObjectResult.put(MyConstant.MONTH,months);
+            jsonObjectResult.put(MyConstant.DAY,days);
+            jsonObjectResult.put(MyConstant.SITUATION,situation);
+            jsonObjectResult.put(MyConstant.PRIORITY,priority);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+        // send to server
 
 
     }
@@ -122,6 +180,7 @@ public class ResultActivity extends AppCompatActivity {
 
                 return false;
             }
+
         });
 
 
