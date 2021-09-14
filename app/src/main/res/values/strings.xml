@@ -46,7 +46,11 @@
     <string name="minute">دقیقه</string>
     <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
     <string name="one">1</string>
-
+    <string name="unknown_error">خطای ناشناخته</string>
+    <string name="server_error">خطای سمت سرور</string>
+    <string name="wrong_username_or_password">نام کاربری یا رمز عبور اشتباه است</string>
+    <string name="login_succsessfully">ورود موفقیت آمیز</string>
+    <string name="please_wait">لطفا صبر کنید</string>
 
 
 </resources>

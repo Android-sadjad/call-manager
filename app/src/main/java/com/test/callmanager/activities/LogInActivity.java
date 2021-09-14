@@ -1,16 +1,24 @@
 package com.test.callmanager.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MyConstant;
 import com.test.callmanager.classes.MySharedPreferences;
+import com.test.callmanager.classes.UseFullMethod;
 import com.test.callmanager.models.UserInfo;
 
 import org.json.JSONException;
@@ -48,15 +56,12 @@ public class LogInActivity extends AppCompatActivity {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!UseFullMethod.isNetworkAvailable(getApplicationContext()))
+                    return;
+
                 if (evaluate()) {
-
-
-                    if(sendLoginRequest()){
-
-                        startActivity(new Intent(LogInActivity.this, MainActivity.class));
-                    }
-
-
+                    sendLoginRequest();
                 }
             }
         });
@@ -64,49 +69,58 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    private boolean sendLoginRequest() {
+    private void sendLoginRequest() {
 
-        String userName=tieUserName.getText().toString();
-        String password=tiePassword.getText().toString();
+        UserInfo userInfo = new UserInfo();
 
-        JSONObject jsonObjectLogin=new JSONObject();
+        String userName = tieUserName.getText().toString();
+        String password = tiePassword.getText().toString();
 
-        try {
-            jsonObjectLogin.put(MyConstant.USER_NAME,userName);
-            jsonObjectLogin.put(MyConstant.PASSWORD,password);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        ProgressDialog progressDialog =new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.please_wait));
+        progressDialog.show();
 
-        //send json to server
 
-        JSONObject jsonObjectUserInfo=new JSONObject();
+        AndroidNetworking.post("https://prtn.ir/dataprobot/slogin.php")
+                .addBodyParameter(MyConstant.USER_NAME, userName)
+                .addBodyParameter(MyConstant.PASSWORD, password)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
 
-        try {
-            jsonObjectUserInfo.put(MyConstant.ID,"123");
-            jsonObjectUserInfo.put(MyConstant.USER_NAME,"mohammad");
-            jsonObjectUserInfo.put(MyConstant.PASSWORD,"654321");
-            jsonObjectUserInfo.put(MyConstant.PERCENT,"45");
-            jsonObjectUserInfo.put(MyConstant.NATIONAL_CODE,"0934359809");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        UserInfo userInfo=new UserInfo();
-        try {
-            userInfo.setId(jsonObjectUserInfo.getString(MyConstant.ID));
-            userInfo.setUserName(jsonObjectUserInfo.getString(MyConstant.USER_NAME));
-            userInfo.setPassword(jsonObjectUserInfo.getString(MyConstant.PASSWORD));
-            userInfo.setPercent(jsonObjectUserInfo.getString(MyConstant.PERCENT));
-            userInfo.setNationalCode(jsonObjectUserInfo.getString(MyConstant.NATIONAL_CODE));
+                            userInfo.setId(response.getString(MyConstant.ID));
+                            userInfo.setUserName(response.getString(MyConstant.USER_NAME));
+                            progressDialog.cancel();
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                            if(userInfo.getId().equals("")){
+                                Toast.makeText(LogInActivity.this, getString(R.string.wrong_username_or_password), Toast.LENGTH_SHORT).show();
 
-        MySharedPreferences.getInstance(LogInActivity.this).putUserInfo(userInfo);
+                            }else {
+                                Toast.makeText(LogInActivity.this,getString(R.string.login_succsessfully),Toast.LENGTH_SHORT).show();
+                                MySharedPreferences.getInstance(LogInActivity.this).putUserInfo(userInfo);
+                                startActivity(new Intent(LogInActivity.this, MainActivity.class));
+                            }
 
-        return true;
+
+
+                        } catch (JSONException e) {
+
+                            Toast.makeText(LogInActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        progressDialog.cancel();
+                        Toast.makeText(LogInActivity.this,getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                    }
+                });
+
 
     }
 

@@ -82,7 +82,7 @@
                     android:background="@color/white_100"
                     android:fontFamily="@font/peyda_regular"
                     android:gravity="center|right"
-                    android:inputType="textPassword"
+                    android:inputType="text"
 
                     />
 
