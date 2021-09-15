@@ -84,7 +84,7 @@ public class LogInActivity extends AppCompatActivity {
         AndroidNetworking.post("https://prtn.ir/dataprobot/slogin.php")
                 .addBodyParameter(MyConstant.USER_NAME, userName)
                 .addBodyParameter(MyConstant.PASSWORD, password)
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override

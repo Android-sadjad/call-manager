@@ -13,8 +13,6 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.google.gson.JsonObject;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MainAdapter;
 import com.test.callmanager.classes.MyConstant;
@@ -62,9 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         getUserCodeFromServer();
-    getSessionList();
+        getSessionList();
     }
-
 
 
     private void getUserCodeFromServer() {
@@ -73,21 +70,21 @@ public class MainActivity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
         progressDialog.show();
-        String sId = loginInfo.getId().toString();
-
+        String sId = loginInfo.getId();
 
         AndroidNetworking.post("https://prtn.ir/dataprobot/getscodes.php")
                 .addBodyParameter(MyConstant.SID, sId)
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
 
                     @Override
                     public void onResponse(JSONArray response) {
-                        StringBuilder codes = new StringBuilder("کد های شما:");
+                        StringBuilder codes = new StringBuilder("کد : ");
                         try {
                             for (int i = 0; i < response.length(); i++) {
-                                codes.append("\n").append(response.getJSONObject(i));
+                                codes.append(response.getJSONObject(i).getString(MyConstant.USERS_CODED));
+                                codes.append("  درصد : ").append(response.getJSONObject(i).getString(MyConstant.PERCENT)).append("%");
                             }
                             tvCodes.setText(codes);
                             progressDialog.cancel();
@@ -111,9 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    private void getSessionList(){
+    private void getSessionList() {
         try {
 
             JSONObject jsonObjectId = new JSONObject();
@@ -147,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
             ////
 
 
-            ArrayList<SessionInfo> sessionInfoList=new ArrayList<>();
+            ArrayList<SessionInfo> sessionInfoList = new ArrayList<>();
 
-            for (int i=0;i<jsonArraySessionList.length();i++){
+            for (int i = 0; i < jsonArraySessionList.length(); i++) {
 
-                JSONObject jsonObjectSessionInfo=jsonArraySessionList.getJSONObject(i);
-                SessionInfo sessionInfo=new SessionInfo();
+                JSONObject jsonObjectSessionInfo = jsonArraySessionList.getJSONObject(i);
+                SessionInfo sessionInfo = new SessionInfo();
 
                 sessionInfo.setTitle(jsonObjectSessionInfo.getString(MyConstant.TITLE));
                 sessionInfo.setPhoneNumber(jsonObjectSessionInfo.getString(MyConstant.PHONE_NUMBER));
@@ -171,12 +166,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
     }
-
-
-
 
 
     private void setUpList(ArrayList<SessionInfo> sessionInfoList) {
@@ -187,4 +177,4 @@ public class MainActivity extends AppCompatActivity {
         rvSession.setAdapter(mainAdapter);
 
     }
-    }
+}
