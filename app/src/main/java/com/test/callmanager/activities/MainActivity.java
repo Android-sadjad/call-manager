@@ -1,12 +1,19 @@
 package com.test.callmanager.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.JsonObject;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MainAdapter;
@@ -53,48 +60,57 @@ public class MainActivity extends AppCompatActivity {
         loginInfo = MySharedPreferences.getInstance(MainActivity.this).getUserInfo();
         tvUserName.setText(getString(R.string.username) + ":" + loginInfo.getUserName());
 
+
         getUserCodeFromServer();
-        getSessionList();
+    getSessionList();
     }
+
+
 
     private void getUserCodeFromServer() {
 
-        try {
 
-            JSONObject jsonObjectId = new JSONObject();
-            jsonObjectId.put(MyConstant.ID, loginInfo.getId());
-
-
-            //send to server
-
-            JSONArray jsonArrayUserCodes = new JSONArray();
-
-            JSONObject jsonObject = new JSONObject();
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
+        progressDialog.show();
+        String sId = loginInfo.getId().toString();
 
 
-            jsonObject.put(MyConstant.USERS_CODED, "1234");
+        AndroidNetworking.post("https://prtn.ir/dataprobot/getscodes.php")
+                .addBodyParameter(MyConstant.SID, sId)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        StringBuilder codes = new StringBuilder("کد های شما:");
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                codes.append("\n").append(response.getJSONObject(i));
+                            }
+                            tvCodes.setText(codes);
+                            progressDialog.cancel();
+
+                        } catch (JSONException e) {
+                            Toast.makeText(MainActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        progressDialog.cancel();
+                        Toast.makeText(MainActivity.this, getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                    }
 
 
-            jsonArrayUserCodes.put(jsonObject);
-            jsonArrayUserCodes.put(jsonObject);
-            jsonArrayUserCodes.put(jsonObject);
-            ////
-
-            StringBuilder codes = new StringBuilder("کدهای کاربرد:");
-
-            for (int i = 0; i < jsonArrayUserCodes.length(); i++) {
-                JSONObject jsonObjectCode = jsonArrayUserCodes.getJSONObject(i);
-                codes.append("\n").append(jsonObjectCode.getString(MyConstant.USERS_CODED));
-            }
-
-            tvCodes.setText(codes);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                });
 
     }
+
+
 
 
     private void getSessionList(){
@@ -159,8 +175,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setUpList(ArrayList<SessionInfo> sessionInfoList) {
 
+
+
+
+    private void setUpList(ArrayList<SessionInfo> sessionInfoList) {
 
         mainAdapter = new MainAdapter(MainActivity.this, sessionInfoList);
         rvSession.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -168,5 +187,4 @@ public class MainActivity extends AppCompatActivity {
         rvSession.setAdapter(mainAdapter);
 
     }
-
-}
+    }

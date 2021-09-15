@@ -18,6 +18,7 @@ public class MyConstant {
     public static final String LOGIN_KEY = "login_key";
 
     public static final String ID = "id";
+    public static final String SID = "sid";
     public static final String USER_NAME = "username";
     public static final String PASSWORD = "password";
     public static final String PERCENT = "percent";
@@ -25,7 +26,7 @@ public class MyConstant {
 
 
 
-    public static final String USERS_CODED = "user_codes";
+    public static final String USERS_CODED = "scode";
     public static final String TITLE = "title";
     public static final String PHONE_NUMBER = "phone_number";
     public static final String CITY = "city";
