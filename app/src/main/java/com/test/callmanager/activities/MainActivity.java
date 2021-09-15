@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     MainAdapter mainAdapter;
 
     UserInfo loginInfo;
+    String sId;
+
+    ProgressDialog progressDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         init();
+
+
 
     }
 
@@ -57,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         loginInfo = MySharedPreferences.getInstance(MainActivity.this).getUserInfo();
         tvUserName.setText(getString(R.string.username) + ":" + loginInfo.getUserName());
+        sId = loginInfo.getId();
+
+        progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
 
 
         getUserCodeFromServer();
@@ -66,11 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void getUserCodeFromServer() {
 
-
-        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
         progressDialog.show();
-        String sId = loginInfo.getId();
+
 
         AndroidNetworking.post("https://prtn.ir/dataprobot/getscodes.php")
                 .addBodyParameter(MyConstant.SID, sId)
@@ -87,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                                 codes.append("  درصد : ").append(response.getJSONObject(i).getString(MyConstant.PERCENT)).append("%");
                             }
                             tvCodes.setText(codes);
-                            progressDialog.cancel();
+
 
                         } catch (JSONException e) {
                             Toast.makeText(MainActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
@@ -109,61 +117,57 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getSessionList() {
-        try {
 
-            JSONObject jsonObjectId = new JSONObject();
-            jsonObjectId.put(MyConstant.ID, loginInfo.getId());
+        ArrayList<SessionInfo> sessionInfoList = new ArrayList<>();
 
-            //send to server
+            AndroidNetworking.post("https://prtn.ir/dataprobot/getsessions.php")
+                    .addBodyParameter(MyConstant.SID, sId)
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .getAsJSONArray(new JSONArrayRequestListener() {
 
-            JSONArray jsonArraySessionList = new JSONArray();
+                        @Override
+                        public void onResponse(JSONArray response) {
 
-            JSONObject jsonObject = new JSONObject();
+                            Toast.makeText(MainActivity.this, "length : "+response.length(), Toast.LENGTH_SHORT).show();
 
+                            try {
+                                for (int i = 0; i < response.length(); i++) {
 
-            jsonObject.put(MyConstant.TITLE, "دانشگاه سجاد");
-            jsonObject.put(MyConstant.PHONE_NUMBER, "0517678798");
-            jsonObject.put(MyConstant.CITY, "مشهد");
-            jsonObject.put(MyConstant.AREA, "منطقه ۲");
+                                    JSONObject jsonObjectSessionInfo = response.getJSONObject(i);
+                                    SessionInfo sessionInfo = new SessionInfo();
 
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            jsonArraySessionList.put(jsonObject);
-            ////
+                                    sessionInfo.setTitle(jsonObjectSessionInfo.getString(MyConstant.TITLE));
+                                    sessionInfo.setCity(jsonObjectSessionInfo.getString(MyConstant.CITY));
+                                    sessionInfo.setArea(jsonObjectSessionInfo.getString(MyConstant.AREA));
+                                    sessionInfo.setPhoneNumber(jsonObjectSessionInfo.getString(MyConstant.PHONE_NUMBER));
 
+                                    sessionInfoList.add(sessionInfo);
 
-            ArrayList<SessionInfo> sessionInfoList = new ArrayList<>();
-
-            for (int i = 0; i < jsonArraySessionList.length(); i++) {
-
-                JSONObject jsonObjectSessionInfo = jsonArraySessionList.getJSONObject(i);
-                SessionInfo sessionInfo = new SessionInfo();
-
-                sessionInfo.setTitle(jsonObjectSessionInfo.getString(MyConstant.TITLE));
-                sessionInfo.setPhoneNumber(jsonObjectSessionInfo.getString(MyConstant.PHONE_NUMBER));
-                sessionInfo.setCity(jsonObjectSessionInfo.getString(MyConstant.CITY));
-                sessionInfo.setArea(jsonObjectSessionInfo.getString(MyConstant.AREA));
-
-                sessionInfoList.add(sessionInfo);
-                setUpList(sessionInfoList);
+                                }
+                                progressDialog.cancel();
+                                setUpList(sessionInfoList);
 
 
-            }
+                            } catch (JSONException e) {
+                                Toast.makeText(MainActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        @Override
+                        public void onError(ANError anError) {
+                            progressDialog.cancel();
+                            Toast.makeText(MainActivity.this, getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                        }
 
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                    });
+
+
+
+
 
 
     }
