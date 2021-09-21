@@ -51,6 +51,12 @@
     <string name="wrong_username_or_password">نام کاربری یا رمز عبور اشتباه است</string>
     <string name="login_succsessfully">ورود موفقیت آمیز</string>
     <string name="please_wait">لطفا صبر کنید</string>
+    <string name="please_select_situation">لطفا نتیجه جلسه را مشخص کنید</string>
+    <string name="please_enter_date">لطفا تاریخ صحیح را وارد کنید\",</string>
+    <string name="off_phone">خاموش بودن تلفن</string>
+    <string name="no_response">برنداشتن تلفن</string>
+    <string name="failure_transaction">عدم انجام تراکنش</string>
+    <string name="succsessfully_transaction">تراکنش موفق</string>
 
 
 </resources>

@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 codes.append(response.getJSONObject(i).getString(MyConstant.USERS_CODED));
-                                codes.append("  درصد : ").append(response.getJSONObject(i).getString(MyConstant.PERCENT)).append("%");
+                                codes.append("  درصد : ").append(response.getJSONObject(i).getString(MyConstant.PERCENT))
+                                        .append("%").append("\n");
                             }
                             tvCodes.setText(codes);
 
@@ -129,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONArray response) {
 
-                            Toast.makeText(MainActivity.this, "length : "+response.length(), Toast.LENGTH_SHORT).show();
 
                             try {
                                 for (int i = 0; i < response.length(); i++) {
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                                     JSONObject jsonObjectSessionInfo = response.getJSONObject(i);
                                     SessionInfo sessionInfo = new SessionInfo();
 
+                                    sessionInfo.setId(jsonObjectSessionInfo.getString(MyConstant.ID));
                                     sessionInfo.setTitle(jsonObjectSessionInfo.getString(MyConstant.TITLE));
                                     sessionInfo.setCity(jsonObjectSessionInfo.getString(MyConstant.CITY));
                                     sessionInfo.setArea(jsonObjectSessionInfo.getString(MyConstant.AREA));

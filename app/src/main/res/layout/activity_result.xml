@@ -66,17 +66,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/til_style"
-                    android:hint="@string/support_name">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_support_name"
-                        style="@style/tie_style"
-                        android:inputType="text" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

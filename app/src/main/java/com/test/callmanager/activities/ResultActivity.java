@@ -1,6 +1,8 @@
 package com.test.callmanager.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -11,10 +13,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MyConstant;
+import com.test.callmanager.classes.MySharedPreferences;
+import com.test.callmanager.models.SessionInfo;
+import com.test.callmanager.models.UserInfo;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,7 +39,6 @@ public class ResultActivity extends AppCompatActivity {
     ConstraintLayout clPrice;
 
     TextInputEditText tieAgent;
-    TextInputEditText tieSupportName;
     TextInputEditText tieDurationMeet;
     TextInputEditText tieDescription;
     TextInputEditText tiePrice;
@@ -37,37 +47,43 @@ public class ResultActivity extends AppCompatActivity {
     EditText etMonth;
     EditText etDay;
 
+    SessionInfo sessionInfo;
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
         findViews();
+        init();
         Configuration();
         setUpMenu();
 
     }
 
 
-    private void findViews(){
+    private void findViews() {
 
-        tvSubmitResult=findViewById(R.id.tv_submit_meet);
-        tvSituationMenu=findViewById(R.id.tv_situation_drop_down);
-        tvPriorityMenu=findViewById(R.id.tv_priority_drop_down);
+        tvSubmitResult = findViewById(R.id.tv_submit_meet);
+        tvSituationMenu = findViewById(R.id.tv_situation_drop_down);
+        tvPriorityMenu = findViewById(R.id.tv_priority_drop_down);
 
-        tieAgent=findViewById(R.id.tie_agent);
-        tieSupportName=findViewById(R.id.tie_support_name);
-        tieDescription=findViewById(R.id.tie_description);
-        tieDurationMeet=findViewById(R.id.tie_duration_meet);
-        tiePrice=findViewById(R.id.tie_price);
+        tieAgent = findViewById(R.id.tie_agent);
+        tieDescription = findViewById(R.id.tie_description);
+        tieDurationMeet = findViewById(R.id.tie_duration_meet);
+        tiePrice = findViewById(R.id.tie_price);
 
-        etDay=findViewById(R.id.et_day);
-        etMonth=findViewById(R.id.et_month);
-        etYear=findViewById(R.id.et_year);
-
+        etDay = findViewById(R.id.et_day);
+        etMonth = findViewById(R.id.et_month);
+        etYear = findViewById(R.id.et_year);
 
 
-        clPrice=findViewById(R.id.cl_price);
+        clPrice = findViewById(R.id.cl_price);
+    }
+
+    private void init() {
+        sessionInfo = (SessionInfo) getIntent().getSerializableExtra(MyConstant.SESSION_INFO);
     }
 
     private void Configuration() {
@@ -75,72 +91,123 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sentResultToServer();
+                if(evaluate()){
+                    sentResultToServer();
+                }
 
-                Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
-                onBackPressed();
+
+
             }
         });
     }
 
-    private void sentResultToServer(){
+    private void sentResultToServer() {
 
 
-String agentName=tieAgent.getText().toString().trim();
-String supportName=tieSupportName.getText().toString().trim();
-String price=tiePrice.getText().toString().trim();
-String description=tieDescription.getText().toString().trim();
-String meetDuration=tieDurationMeet.getText().toString().trim();
-String years=etYear.getText().toString().trim();
-String months=etMonth.getText().toString().trim();
-String days=etDay.getText().toString().trim();
-String situation=tvSituationMenu.getText().toString().trim();
-String priority=tvPriorityMenu.getText().toString().trim();
-
-        JSONObject jsonObjectResult=new JSONObject();
+        progressDialog = new ProgressDialog(ResultActivity.this);
+        progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
+        progressDialog.show();
 
 
-        try {
+        String sid=  MySharedPreferences.getInstance(ResultActivity.this).getUserInfo().getId();
 
-            jsonObjectResult.put(MyConstant.AGENT_NAME,agentName);
-            jsonObjectResult.put(MyConstant.SUPPORT_NAME,supportName);
-            jsonObjectResult.put(MyConstant.PRICE,price);
-            jsonObjectResult.put(MyConstant.DESCRIPTION,description);
-            jsonObjectResult.put(MyConstant.DURATION,meetDuration);
-            jsonObjectResult.put(MyConstant.YEAR,years);
-            jsonObjectResult.put(MyConstant.MONTH,months);
-            jsonObjectResult.put(MyConstant.DAY,days);
-            jsonObjectResult.put(MyConstant.SITUATION,situation);
-            jsonObjectResult.put(MyConstant.PRIORITY,priority);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        String id= sessionInfo.getId();
+        String agentName = tieAgent.getText().toString().trim();
+        String situation = tvSituationMenu.getText().toString().trim();
+        String priority = tvPriorityMenu.getText().toString().trim();
+
+        StringBuilder date=new StringBuilder();
+        date.append(etYear.getText().toString().trim()).append("/")
+                .append(etMonth.getText().toString().trim()).append("/")
+                .append( etDay.getText().toString().trim());
+
+        String price = tiePrice.getText().toString().trim();
+        String meetDuration = tieDurationMeet.getText().toString().trim();
+        String description = tieDescription.getText().toString().trim();
+
+
+        switch (situation){
+
+            case "خاموش بودن تلفن":
+                    situation="op";//off phone
+                break;
+
+            case "برنداشتن تلفن":
+                situation="nr";//no response
+                break;
+
+            case "عدم انجام تراکنش":
+                situation="ft";//failure transaction
+                break;
+
+            case "تراکنش موفق":
+                situation="sf";//successfully transaction
+                break;
+
+
         }
 
 
+        AndroidNetworking.post("https://prtn.ir/dataprobot/addmeetingresult.php")
+                .addBodyParameter(MyConstant.ID_SUPPORTER_ID, sid)
+                .addBodyParameter(MyConstant.RL_ID, id)
+                .addBodyParameter(MyConstant.REALESTATE_NAME, agentName)
+                .addBodyParameter(MyConstant.STATUS, situation)
+                .addBodyParameter(MyConstant.PRIORITY, priority)
+                .addBodyParameter(MyConstant.DATE, String.valueOf(date))
+                .addBodyParameter(MyConstant.MEETING_DURATION, meetDuration)
+                .addBodyParameter(MyConstant.MORE, description)
+                .addBodyParameter(MyConstant.AMOUNT, price)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Toast.makeText(ResultActivity.this, "response : "+response, Toast.LENGTH_SHORT).show();
+                        progressDialog.cancel();
+                        if(response.equals("done"))
+                        Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(ResultActivity.this, getString(R.string.server_error), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                        Toast.makeText(ResultActivity.this, "error : "+anError.getErrorBody(), Toast.LENGTH_SHORT).show();
+                        progressDialog.cancel();
+                    }
+
+                    });
 
 
 
-        // send to server
+
+
+
+
 
 
     }
 
-    private void setUpMenu(){
+    private void setUpMenu() {
 
-        PopupMenu situationMenu=new PopupMenu(this,tvSituationMenu);
-        situationMenu.getMenu().add("خاموش بودن تلفن");
-        situationMenu.getMenu().add("برنداشتن تلفن");
-        situationMenu.getMenu().add("عدم انجام تراکنش");
-        situationMenu.getMenu().add("تراکنش موفق");
+        PopupMenu situationMenu = new PopupMenu(this, tvSituationMenu);
+        situationMenu.getMenu().add(getString(R.string.off_phone));
+        situationMenu.getMenu().add(getString(R.string.no_response));
+        situationMenu.getMenu().add(getString(R.string.failure_transaction));
+        situationMenu.getMenu().add(getString(R.string.succsessfully_transaction));
 
 
         situationMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getTitle().toString().equals("تراکنش موفق")){
+                if (item.getTitle().toString().equals(getString(R.string.succsessfully_transaction))) {
                     clPrice.setVisibility(View.VISIBLE);
 
-                }else{
+                } else {
                     clPrice.setVisibility(View.GONE);
                 }
 
@@ -159,7 +226,7 @@ String priority=tvPriorityMenu.getText().toString().trim();
         });
 
 
-        PopupMenu priorityMenu=new PopupMenu(this,tvPriorityMenu);
+        PopupMenu priorityMenu = new PopupMenu(this, tvPriorityMenu);
         priorityMenu.getMenu().add("1");
         priorityMenu.getMenu().add("2");
         priorityMenu.getMenu().add("3");
@@ -192,11 +259,36 @@ String priority=tvPriorityMenu.getText().toString().trim();
         });
 
 
+    }
 
+    private boolean evaluate(){
 
+        if(tieAgent.getText().length()==0){
 
+            tieAgent.setError(getString(R.string.enter_this_field));
+            return false;
+        }else if(tvSituationMenu.getText().equals(getString(R.string.situation))){
 
+            Toast.makeText(this, getString(R.string.please_select_situation), Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(etDay.getText().length()!=2||etMonth.getText().length()!=2||etYear.getText().length()!=4)
+        {
+            Toast.makeText(this, getString(R.string.please_enter_date), Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(tvSituationMenu.getText().equals("تراکنش موفق")&&tiePrice.getText().length()==0){
+            tiePrice.setError(getString(R.string.enter_this_field));
+            return false;
+        }
+        else if(tieDurationMeet.getText().length()==0){
+            tieDurationMeet.setError(getString(R.string.enter_this_field));
+            return false;
+        }
+        else if(tieDescription.getText().length()==0){
+            tieDescription.setError(getString(R.string.enter_this_field));
+            return false;
+        }
 
+        return true;
 
     }
 }

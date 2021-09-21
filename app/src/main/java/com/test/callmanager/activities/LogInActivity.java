@@ -90,8 +90,6 @@ public class LogInActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
-
                             userInfo.setId(response.getString(MyConstant.ID));
                             userInfo.setUserName(response.getString(MyConstant.USER_NAME));
                             progressDialog.cancel();
@@ -100,7 +98,6 @@ public class LogInActivity extends AppCompatActivity {
                                 Toast.makeText(LogInActivity.this, getString(R.string.wrong_username_or_password), Toast.LENGTH_SHORT).show();
 
                             }else {
-                                Toast.makeText(LogInActivity.this,getString(R.string.login_succsessfully),Toast.LENGTH_SHORT).show();
                                 MySharedPreferences.getInstance(LogInActivity.this).putUserInfo(userInfo);
                                 startActivity(new Intent(LogInActivity.this, MainActivity.class));
                             }

@@ -35,16 +35,18 @@ public class MyConstant {
 
 
     public static final String SESSION_INFO = "session_info";
-    public static final String SUPPORT_NAME = "supportName";
-    public static final String AGENT_NAME = "agentName";
-    public static final String SITUATION = "situation";
-    public static final String PRICE = "price";
+
+
+
+    public static final String ID_SUPPORTER_ID = "idsupporterid";
+    public static final String RL_ID = "rlid";
+    public static final String REALESTATE_NAME = "realestatename";
+    public static final String STATUS = "status";
     public static final String PRIORITY = "priority";
     public static final String DATE = "date";
-    public static final String DURATION = "duration";
-    public static final String DESCRIPTION = "description";
-    public static final String YEAR = "year";
-    public static final String MONTH = "month";
-    public static final String DAY = "day";
+    public static final String MEETING_DURATION = "meetingduration";
+    public static final String MORE = "more";
+    public static final String AMOUNT = "amount";
+
 
 }
