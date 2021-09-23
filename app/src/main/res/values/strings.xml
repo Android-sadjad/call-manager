@@ -23,13 +23,13 @@
     <string name="meeting_result">نتیجه جلسه</string>
 
 
-    <string name="sample_support_name">پشتیبان : مهدی</string>
-    <string name="sample_agent_name">نماینده : محمد</string>
-    <string name="sample_situation">وضعیت : در جریان</string>
-    <string name="sample_price">مبلغ: ۱۰۰۰۰۰۰</string>
-    <string name="sample_priority">اولیت : بالا</string>
-    <string name="sample_date">تاریخ: ۱۴۰۰/۰۵/۲۵</string>
-    <string name="sample_session_duration">مدت جلسه : ۲۵ دقیقه</string>
+    <string name="support">پشتیبان :</string>
+    <string name="agent_name">نماینده : </string>
+    <string name="sample_situation">وضعیت : </string>
+    <string name="sample_price">مبلغ: </string>
+    <string name="sample_priority">اولیت : </string>
+    <string name="sample_date">تاریخ: </string>
+    <string name="sample_session_duration">مدت جلسه : </string>
 
 
     <string name="agent">نام نماینده فرد مقابل</string>
@@ -57,6 +57,7 @@
     <string name="no_response">برنداشتن تلفن</string>
     <string name="failure_transaction">عدم انجام تراکنش</string>
     <string name="succsessfully_transaction">تراکنش موفق</string>
+    <string name="getting_your_info">در حال بارگذاری اطلاعات شما...</string>
 
 
 </resources>

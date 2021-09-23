@@ -33,6 +33,18 @@ public class MyConstant {
     public static final String AREA = "area";
 
 
+    public static final String MID = "mid";
+    public static final String RL_NAME = "rlname";
+    public static final String M_status = "mstatus";
+    public static final String M_PRIORITY = "mpriority";
+    public static final String M_DATE = "mdate";
+    public static final String M_DURATION = "mduration";
+    public static final String M_MORE = "mmore";
+    public static final String M_AMOUNT = "mamount";
+    public static final String S_USERNAME = "susername";
+    public static final String S_NATIONAL_CODE = "snationalcode";
+
+
 
     public static final String SESSION_INFO = "session_info";
 

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         sId = loginInfo.getId();
 
         progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
+        progressDialog.setMessage(getString(R.string.getting_your_info));
 
 
         getUserCodeFromServer();

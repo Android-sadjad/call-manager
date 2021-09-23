@@ -1,5 +1,6 @@
 package com.test.callmanager.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MyConstant;
 import com.test.callmanager.classes.SessionAdapter;
@@ -36,6 +41,8 @@ public class SessionActiviy extends AppCompatActivity {
     RecyclerView rvSession;
     SessionAdapter sessionAdapter;
 
+    ProgressDialog progressDialog;
+
     SessionInfo sessionInfo;
 
     boolean callSelected = false;
@@ -47,7 +54,7 @@ public class SessionActiviy extends AppCompatActivity {
 
         findViews();
         init();
-        setUpList();
+        getList();
         configuration();
     }
 
@@ -66,6 +73,9 @@ public class SessionActiviy extends AppCompatActivity {
     }
 
     private void init(){
+        progressDialog=new ProgressDialog(SessionActiviy.this);
+        progressDialog.setMessage(getString(R.string.getting_your_info));
+        progressDialog.show();
 
 
         sessionInfo= (SessionInfo) getIntent().getSerializableExtra(MyConstant.SESSION_INFO);
@@ -78,9 +88,60 @@ public class SessionActiviy extends AppCompatActivity {
 
     }
 
-    private void setUpList() {
+    private void getList() {
 
-        ArrayList<SessionHistory> sessionHistories = new ArrayList<>();
+
+        ArrayList<SessionHistory> sessionHistoriesList = new ArrayList<>();
+        String rlId =sessionInfo.getId().toString().trim();
+
+
+        AndroidNetworking.post("https://prtn.ir/dataprobot/gethistory.php")
+                .addBodyParameter(MyConstant.RL_ID,rlId)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                        for (int i = 0; i <response.length() ; i++) {
+
+                                JSONObject jsonObjectSessionHistory=response.getJSONObject(i);
+                                SessionHistory sessionHistory=new SessionHistory();
+                                sessionHistory.setAgentName(jsonObjectSessionHistory.getString(MyConstant.RL_NAME));
+                                sessionHistory.setSituation(jsonObjectSessionHistory.getString(MyConstant.M_status));
+                                sessionHistory.setPriority(jsonObjectSessionHistory.getString(MyConstant.M_PRIORITY));
+                                sessionHistory.setDate(jsonObjectSessionHistory.getString(MyConstant.M_DATE));
+                                sessionHistory.setDuration(jsonObjectSessionHistory.getString(MyConstant.M_DURATION));
+                                sessionHistory.setDescription(jsonObjectSessionHistory.getString(MyConstant.M_MORE));
+                                sessionHistory.setPrice(jsonObjectSessionHistory.getString(MyConstant.M_AMOUNT));
+                                sessionHistory.setSupportName(jsonObjectSessionHistory.getString(MyConstant.S_USERNAME));
+
+                                sessionHistoriesList.add(sessionHistory);
+
+                        }
+
+                            progressDialog.cancel();
+                            setUpList(sessionHistoriesList);
+
+                    } catch (JSONException e) {
+                            Toast.makeText(SessionActiviy.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        progressDialog.cancel();
+                        Toast.makeText(SessionActiviy.this, getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
+
+
+
+
         //
 //        JSONArray jsonArrayHistoryList=new JSONArray();
 //
@@ -128,12 +189,20 @@ public class SessionActiviy extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 //
-        sessionAdapter = new SessionAdapter(SessionActiviy.this, sessionHistories);
+
+
+    }
+
+
+    private void setUpList(ArrayList<SessionHistory> sessionHistoriesList) {
+        sessionAdapter = new SessionAdapter(SessionActiviy.this, sessionHistoriesList);
         rvSession.setLayoutManager(new LinearLayoutManager(SessionActiviy.this));
 
         rvSession.setAdapter(sessionAdapter);
 
+
     }
+
 
     private void configuration() {
 
