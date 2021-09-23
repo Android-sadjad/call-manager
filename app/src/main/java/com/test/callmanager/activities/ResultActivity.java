@@ -2,7 +2,6 @@ package com.test.callmanager.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -16,18 +15,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MyConstant;
 import com.test.callmanager.classes.MySharedPreferences;
 import com.test.callmanager.models.SessionInfo;
-import com.test.callmanager.models.UserInfo;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -149,7 +142,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
         AndroidNetworking.post("https://prtn.ir/dataprobot/addmeetingresult.php")
-                .addBodyParameter(MyConstant.ID_SUPPORTER_ID, sid)
+                .addBodyParameter(MyConstant.SUPPORTER_ID, sid)
                 .addBodyParameter(MyConstant.RL_ID, id)
                 .addBodyParameter(MyConstant.REALESTATE_NAME, agentName)
                 .addBodyParameter(MyConstant.STATUS, situation)

@@ -38,7 +38,7 @@ public class MyConstant {
 
 
 
-    public static final String ID_SUPPORTER_ID = "idsupporterid";
+    public static final String SUPPORTER_ID = "supporterid";
     public static final String RL_ID = "rlid";
     public static final String REALESTATE_NAME = "realestatename";
     public static final String STATUS = "status";
