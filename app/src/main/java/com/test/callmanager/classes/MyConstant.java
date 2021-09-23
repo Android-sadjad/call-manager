@@ -46,6 +46,12 @@ public class MyConstant {
 
 
 
+
+    public static final int RESULT_CODE = 10;
+    public static final int REQUEST_CODE = 100;
+
+
+
     public static final String SESSION_INFO = "session_info";
 
 

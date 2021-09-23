@@ -90,6 +90,9 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
+
+
+
             }
         });
     }
@@ -159,8 +162,13 @@ public class ResultActivity extends AppCompatActivity {
 
                         Toast.makeText(ResultActivity.this, "response : "+response, Toast.LENGTH_SHORT).show();
                         progressDialog.cancel();
-                        if(response.equals("done"))
-                        Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
+                        if(response.equals("done")){
+                            Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
+                            setResult(MyConstant.RESULT_CODE);
+                            finish();
+
+                        }
+
                         else
                             Toast.makeText(ResultActivity.this, getString(R.string.server_error), Toast.LENGTH_SHORT).show();
 
@@ -284,4 +292,9 @@ public class ResultActivity extends AppCompatActivity {
         return true;
 
     }
+
+
+
+
+
 }

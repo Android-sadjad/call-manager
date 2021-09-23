@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -226,12 +227,23 @@ public class SessionActiviy extends AppCompatActivity {
 
                 Intent intent=new Intent(SessionActiviy.this, ResultActivity.class);
                 intent.putExtra(MyConstant.SESSION_INFO,sessionInfo);
-                startActivity(intent);
+                startActivityForResult(intent,MyConstant.REQUEST_CODE);
 
             }
         });
 
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode==MyConstant.REQUEST_CODE&&resultCode==MyConstant.RESULT_CODE){
+            getList();
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
