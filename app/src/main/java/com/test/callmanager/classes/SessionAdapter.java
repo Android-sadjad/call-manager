@@ -43,7 +43,29 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
     holder.tvAmount.setText("مبلغ:"+sessionHistories.get(position).getPrice());
     holder.tvAgentName.setText("نماینده:"+sessionHistories.get(position).getAgentName());
     holder.tvPriority.setText("اولویت:"+sessionHistories.get(position).getPriority());
-    holder.tvStatus.setText("وضعیت:"+sessionHistories.get(position).getSituation());
+
+    switch (sessionHistories.get(position).getSituation()){
+        case "op":
+            holder.tvStatus.setText("وضعیت:"+"خاموش بودن تلفن");
+            break;
+
+        case "nr":
+            holder.tvStatus.setText("وضعیت:"+"برنداشتن تلفن");
+
+            break;
+
+        case "ft":
+            holder.tvStatus.setText("وضعیت:"+"عدم انجام تراکنش");
+
+            break;
+
+        case "sf":
+            holder.tvStatus.setText("وضعیت:"+"تراکنش موفق");
+
+            break;
+
+    }
+
     holder.tvDate.setText("تاریخ:"+sessionHistories.get(position).getDate());
     holder.tvDuration.setText("مدت جلسه:"+sessionHistories.get(position).getDuration()+" دقیقه");
     holder.tvDescription.setText("توضیحات:\n"+sessionHistories.get(position).getDescription());
