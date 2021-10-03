@@ -16,6 +16,7 @@
         android:theme="@style/Theme.CallManager">
         <activity android:name=".activities.ResultActivity"
             android:configChanges="orientation|keyboard"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
 
         </activity>

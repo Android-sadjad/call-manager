@@ -25,6 +25,9 @@
         app:layout_constraintBottom_toTopOf="@id/cv_session_result"
         app:layout_constraintTop_toTopOf="@id/view_header" />
 
+    <requestFocus>
+
+    </requestFocus>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_session_result"
         android:layout_width="match_parent"
@@ -140,7 +143,7 @@
                         android:id="@+id/tv_priority"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="0.5"
                         android:gravity="center|right"
                         android:text="@string/priority"
                         android:textColor="@color/black"
@@ -161,10 +164,11 @@
                     android:orientation="horizontal">
 
                     <EditText
-android:id="@+id/et_year"
+                        android:id="@+id/et_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="YYYY"
+
                         android:inputType="number"
                         android:maxLength="4" />
 
@@ -175,7 +179,7 @@ android:id="@+id/et_year"
                         android:textSize="@dimen/tv_slash_text_size" />
 
                     <EditText
-android:id="@+id/et_month"
+                        android:id="@+id/et_month"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="MM"
@@ -190,11 +194,12 @@ android:id="@+id/et_month"
                         android:textSize="@dimen/tv_slash_text_size" />
 
                     <EditText
-android:id="@+id/et_day"
+                        android:id="@+id/et_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:hint="DD"
+
                         android:inputType="number"
                         android:maxLength="2" />
 
