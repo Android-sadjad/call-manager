@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">صدق</string>
+
+
+    <!-- splash_screen_activity-->
     <string name="sedgh">S E D G H</string>
     <string name="ANODYNE">POWERED BY ANODYNE</string>
 
 
+    <!-- login_activity-->
     <string name="login_page">صفحه ورود</string>
     <string name="username">نام کاربری</string>
     <string name="password">رمز عبور</string>
@@ -11,17 +15,18 @@
     <string name="enter_this_field">این فیلد را وارد کنید</string>
 
 
+    <!-- main_activity-->
     <string name="sample_user_name">نام کاربری: محمد</string>
     <string name="session_name">نام جلسه</string>
     <string name="sample_description">توضیحات کوتاه</string>
 
 
+    <!-- session_activity-->
     <string name="sample_title">عنوان : جسله کاری</string>
     <string name="sample_city">شهر:مشهد</string>
     <string name="sample_area">منظقه:۲</string>
     <string name="call">تماس</string>
     <string name="meeting_result">نتیجه جلسه</string>
-
 
     <string name="support">پشتیبان :</string>
     <string name="agent_name">نماینده : </string>
@@ -32,22 +37,27 @@
     <string name="sample_session_duration">مدت جلسه : </string>
 
 
+    <!-- result_activity-->
     <string name="agent">نام نماینده فرد مقابل</string>
-    <string name="support_name">نام پشتیبان</string>
-    <string name="situation">وضعیت جلسه</string>
+    <string name="meeting_status">وضعیت جلسه</string>
+    <string name="status">وضعیت : </string>
+    <string name="off_phone">خاموش بودن تلفن</string>
+    <string name="no_response">برنداشتن تلفن</string>
+    <string name="failure_transaction">عدم انجام تراکنش</string>
+    <string name="succsessfully_transaction">تراکنش موفق</string>
     <string name="priority">اولویت</string>
     <string name="date_meet">تاریخ جلسه</string>
-    <string name="price">مبلغ تراکنش</string>
-    <string name="duratoin_meet">مدت جلسه</string>
-    <string name="description">توضیحات</string>
-    <string name="submit_result">ثبت نتیجه </string>
-
-    <string name="rial">ریال</string>
-    <string name="minute">دقیقه</string>
     <string name="days">DD</string>
     <string name="month">MM</string>
     <string name="year">YYYY</string>
     <string name="slash">/</string>
+    <string name="price">مبلغ تراکنش</string>
+    <string name="rial">ریال</string>
+    <string name="duratoin_meet">مدت جلسه</string>
+    <string name="minute">دقیقه</string>
+    <string name="description">توضیحات</string>
+    <string name="submit_result">ثبت نتیجه </string>
+    <string name="amount">مبلغ : </string>
     <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
     <string name="one">1</string>
     <string name="unknown_error">خطای ناشناخته</string>
@@ -57,11 +67,14 @@
     <string name="please_wait">لطفا صبر کنید</string>
     <string name="please_select_situation">لطفا نتیجه جلسه را مشخص کنید</string>
     <string name="please_enter_date">لطفا تاریخ صحیح را وارد کنید\",</string>
-    <string name="off_phone">خاموش بودن تلفن</string>
-    <string name="no_response">برنداشتن تلفن</string>
-    <string name="failure_transaction">عدم انجام تراکنش</string>
-    <string name="succsessfully_transaction">تراکنش موفق</string>
     <string name="getting_your_info">در حال بارگذاری اطلاعات شما...</string>
+    <string name="please_enter_result">لطفا ابتدا نتیجه جلسه را وارد کنید.</string>
+    <string name="enter_correct_price">حداقل مبلغ ۵۰۰۰ دریال است</string>
+    <string name="done">done</string>
+    <string name="result_recorded">نتیجه ثبت شد</string>
+    <string name="error">"error : "</string>
+    <string name="date">"تاریخ : "</string>
+
 
 
 </resources>

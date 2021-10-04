@@ -6,12 +6,6 @@ public class UserInfo {
     String userName;
 
 
-
-    public UserInfo() {
-
-    }
-
-
     public String getId() {
         return id;
     }

@@ -2,8 +2,6 @@ package com.test.callmanager.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -17,31 +15,22 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.test.callmanager.R;
 import com.test.callmanager.classes.MyConstant;
 import com.test.callmanager.classes.MySharedPreferences;
 import com.test.callmanager.models.SessionInfo;
-import com.test.callmanager.models.UserInfo;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.DecimalFormat;
 
 public class ResultActivity extends AppCompatActivity {
 
     TextView tvSubmitResult;
-    TextView tvSituationMenu;
+    TextView tvStatusMenu;
     TextView tvPriorityMenu;
-
 
     ConstraintLayout clPrice;
 
-    TextInputEditText tieAgent;
+    TextInputEditText tieAgentName;
     TextInputEditText tieDurationMeet;
     TextInputEditText tieDescription;
     TextInputEditText tiePrice;
@@ -68,11 +57,11 @@ public class ResultActivity extends AppCompatActivity {
 
     private void findViews() {
 
-        tvSubmitResult = findViewById(R.id.tv_submit_meet);
-        tvSituationMenu = findViewById(R.id.tv_situation_drop_down);
-        tvPriorityMenu = findViewById(R.id.tv_priority_drop_down);
+        tvSubmitResult = findViewById(R.id.tv_submit_result);
+        tvStatusMenu = findViewById(R.id.tv_status_menu);
+        tvPriorityMenu = findViewById(R.id.tv_priority_menu);
 
-        tieAgent = findViewById(R.id.tie_agent);
+        tieAgentName = findViewById(R.id.tie_agent_name);
         tieDescription = findViewById(R.id.tie_description);
         tieDurationMeet = findViewById(R.id.tie_duration_meet);
         tiePrice = findViewById(R.id.tie_price);
@@ -86,10 +75,12 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void init() {
+
         sessionInfo = (SessionInfo) getIntent().getSerializableExtra(MyConstant.SESSION_INFO);
     }
 
     private void Configuration() {
+
         tvSubmitResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +88,6 @@ public class ResultActivity extends AppCompatActivity {
                 if(evaluate()){
                     sentResultToServer();
                 }
-
-
 
             }
         });
@@ -110,15 +99,15 @@ public class ResultActivity extends AppCompatActivity {
 
 
         progressDialog = new ProgressDialog(ResultActivity.this);
-        progressDialog.setMessage("در حال بارگذاری اطلاعات شما...");
+        progressDialog.setMessage(getString(R.string.getting_your_info));
         progressDialog.show();
 
 
         String sid=  MySharedPreferences.getInstance(ResultActivity.this).getUserInfo().getId();
 
         String id= sessionInfo.getId();
-        String agentName = tieAgent.getText().toString().trim();
-        String situation = tvSituationMenu.getText().toString().trim();
+        String agentName = tieAgentName.getText().toString().trim();
+        String status = tvStatusMenu.getText().toString().trim();
         String priority = tvPriorityMenu.getText().toString().trim();
 
         StringBuilder date=new StringBuilder();
@@ -132,33 +121,33 @@ public class ResultActivity extends AppCompatActivity {
         String description = tieDescription.getText().toString().trim();
 
 
-        switch (situation){
+        switch (status){
 
-            case "خاموش بودن تلفن":
-                    situation="op";//off phone
+            case  MyConstant.PHONE_OFF:
+                    status=MyConstant.OP;
                 break;
 
-            case "برنداشتن تلفن":
-                situation="nr";//no response
+            case MyConstant.NO_RESPONSE:
+                status=MyConstant.NR;
                 break;
 
-            case "عدم انجام تراکنش":
-                situation="ft";//failure transaction
+            case MyConstant.FAILURE_TRANSACTION:
+                status=MyConstant.FT;
                 break;
 
-            case "تراکنش موفق":
-                situation="sf";//successfully transaction
+            case MyConstant.SUCCESSFULLY_TRANSACTION:
+                status=MyConstant.SF;
                 break;
 
 
         }
 
 
-        AndroidNetworking.post("https://prtn.ir/dataprobot/addmeetingresult.php")
+        AndroidNetworking.post(MyConstant.URL_SEND_RESULT)
                 .addBodyParameter(MyConstant.SUPPORTER_ID, sid)
                 .addBodyParameter(MyConstant.RL_ID, id)
                 .addBodyParameter(MyConstant.REALESTATE_NAME, agentName)
-                .addBodyParameter(MyConstant.STATUS, situation)
+                .addBodyParameter(MyConstant.STATUS, status)
                 .addBodyParameter(MyConstant.PRIORITY, priority)
                 .addBodyParameter(MyConstant.DATE, String.valueOf(date))
                 .addBodyParameter(MyConstant.MEETING_DURATION, meetDuration)
@@ -170,10 +159,12 @@ public class ResultActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(ResultActivity.this, "response : "+response, Toast.LENGTH_SHORT).show();
                         progressDialog.cancel();
-                        if(response.equals("done"))
-                        Toast.makeText(ResultActivity.this, "نتیجه ثبت شد", Toast.LENGTH_SHORT).show();
+                        if(response.equals(getString(R.string.done))){
+                            Toast.makeText(ResultActivity.this, getString(R.string.result_recorded), Toast.LENGTH_SHORT).show();
+                            setResult(MyConstant.RESULT_CODE);
+                            finish();
+                        }
                         else
                             Toast.makeText(ResultActivity.this, getString(R.string.server_error), Toast.LENGTH_SHORT).show();
 
@@ -182,7 +173,7 @@ public class ResultActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
 
-                        Toast.makeText(ResultActivity.this, "error : "+anError.getErrorBody(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ResultActivity.this, getString(R.string.error)+anError.getErrorBody(), Toast.LENGTH_SHORT).show();
                         progressDialog.cancel();
                     }
 
@@ -200,14 +191,14 @@ public class ResultActivity extends AppCompatActivity {
 
     private void setUpMenu() {
 
-        PopupMenu situationMenu = new PopupMenu(this, tvSituationMenu);
-        situationMenu.getMenu().add(getString(R.string.off_phone));
-        situationMenu.getMenu().add(getString(R.string.no_response));
-        situationMenu.getMenu().add(getString(R.string.failure_transaction));
-        situationMenu.getMenu().add(getString(R.string.succsessfully_transaction));
+        PopupMenu statusMenu = new PopupMenu(this, tvStatusMenu);
+        statusMenu.getMenu().add(getString(R.string.off_phone));
+        statusMenu.getMenu().add(getString(R.string.no_response));
+        statusMenu.getMenu().add(getString(R.string.failure_transaction));
+        statusMenu.getMenu().add(getString(R.string.succsessfully_transaction));
 
 
-        situationMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        statusMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getTitle().toString().equals(getString(R.string.succsessfully_transaction))) {
@@ -217,17 +208,17 @@ public class ResultActivity extends AppCompatActivity {
                     clPrice.setVisibility(View.GONE);
                 }
 
-                tvSituationMenu.setText(item.getTitle());
+                tvStatusMenu.setText(item.getTitle());
 
 
                 return false;
             }
         });
 
-        tvSituationMenu.setOnClickListener(new View.OnClickListener() {
+        tvStatusMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                situationMenu.show();
+                statusMenu.show();
             }
         });
 
@@ -269,30 +260,37 @@ public class ResultActivity extends AppCompatActivity {
 
     private boolean evaluate(){
 
-        if(tieAgent.getText().length()==0){
+        if(tieAgentName.getText().length()==0){
 
-            tieAgent.setError(getString(R.string.enter_this_field));
+            tieAgentName.setError(getString(R.string.enter_this_field));
             return false;
-        }else if(tvSituationMenu.getText().equals(getString(R.string.situation))){
+        }else if(tvStatusMenu.getText().equals(getString(R.string.meeting_status))){
 
             Toast.makeText(this, getString(R.string.please_select_situation), Toast.LENGTH_SHORT).show();
             return false;
-        }else if(etDay.getText().length()!=2||etMonth.getText().length()!=2||etYear.getText().length()!=4)
-        {
+        }
+
+        else if(etDay.getText().length()!=2||etMonth.getText().length()!=2||etYear.getText().length()!=4) {
             Toast.makeText(this, getString(R.string.please_enter_date), Toast.LENGTH_SHORT).show();
             return false;
-        }else if(tvSituationMenu.getText().equals("تراکنش موفق")&&tiePrice.getText().length()==0){
-            tiePrice.setError(getString(R.string.enter_this_field));
+        }
+
+        else if(tvStatusMenu.getText().equals(getString(R.string.succsessfully_transaction))&&
+                Long.parseLong(tiePrice.getText().toString())<5000){
+            tiePrice.setError(getString(R.string.enter_correct_price));
             return false;
         }
+
         else if(tieDurationMeet.getText().length()==0){
             tieDurationMeet.setError(getString(R.string.enter_this_field));
             return false;
         }
+
         else if(tieDescription.getText().length()==0){
             tieDescription.setError(getString(R.string.enter_this_field));
             return false;
         }
+
 
         return true;
 

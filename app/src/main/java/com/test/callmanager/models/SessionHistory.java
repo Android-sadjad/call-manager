@@ -4,7 +4,7 @@ public class SessionHistory {
 
     String supportName;
     String agentName;
-    String situation;
+    String status;
     String price;
     String priority;
     String date;
@@ -45,12 +45,12 @@ public class SessionHistory {
         this.agentName = agentName;
     }
 
-    public String getSituation() {
-        return situation;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSituation(String situation) {
-        this.situation = situation;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getPriority() {

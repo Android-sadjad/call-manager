@@ -25,9 +25,9 @@
         app:layout_constraintBottom_toTopOf="@id/cv_session_result"
         app:layout_constraintTop_toTopOf="@id/view_header" />
 
-    <requestFocus>
+    <requestFocus />
 
-    </requestFocus>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_session_result"
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:hint="@string/agent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_agent"
+                        android:id="@+id/tie_agent_name"
                         style="@style/tie_style"
                         android:inputType="text" />
 
@@ -79,7 +79,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_situation_drop_down"
+                        android:id="@+id/tv_status_menu"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/tv_situation_drop_down_height"
                         android:layout_marginHorizontal="@dimen/_20sdp"
@@ -88,7 +88,7 @@
                         android:fontFamily="@font/peyda_bold"
                         android:gravity="center"
                         android:paddingRight="@dimen/_10sdp"
-                        android:text="@string/situation"
+                        android:text="@string/meeting_status"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tv_situation_drop_down_text_size" />
 
@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.6"
                         android:gravity="center|right"
-                        android:text="@string/situation"
+                        android:text="@string/meeting_status"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tv_situation_text_size"
                         android:textStyle="bold" />
@@ -126,7 +126,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_priority_drop_down"
+                        android:id="@+id/tv_priority_menu"
                         android:layout_width="@dimen/tv_priority_drop_down_width"
                         android:layout_height="@dimen/tv_priority_drop_down_height"
                         android:layout_marginHorizontal="@dimen/_15sdp"
@@ -165,29 +165,26 @@
 
                     <EditText
                         android:id="@+id/et_year"
-                       style="@style/date_format"
+                        style="@style/date_format"
                         android:hint="@string/year"
 
                         android:maxLength="4" />
 
-                    <TextView
-                        style="@style/slash_date_format" />
+                    <TextView style="@style/slash_date_format" />
 
                     <EditText
                         android:id="@+id/et_month"
-                        android:hint="@string/month"
                         style="@style/date_format"
+                        android:hint="@string/month"
                         android:maxLength="2" />
 
-                    <TextView
-                      style="@style/slash_date_format"
-                       />
+                    <TextView style="@style/slash_date_format" />
 
                     <EditText
                         android:id="@+id/et_day"
+                        style="@style/date_format"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:hint="@string/days"
-                      style="@style/date_format"
                         android:maxLength="2" />
 
                     <TextView
@@ -312,7 +309,7 @@
         app:strokeWidth="@dimen/button_card_view_result_stroke_width">
 
         <TextView
-            android:id="@+id/tv_submit_meet"
+            android:id="@+id/tv_submit_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/peyda_bold"

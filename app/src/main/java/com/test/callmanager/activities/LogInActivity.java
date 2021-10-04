@@ -47,6 +47,7 @@ public class LogInActivity extends AppCompatActivity {
 
         viewHeader = findViewById(R.id.view_header);
         tvLogin = findViewById(R.id.tv_login);
+
         tiePassword = findViewById(R.id.tie_password);
         tieUserName = findViewById(R.id.tie_user_name);
     }
@@ -81,7 +82,7 @@ public class LogInActivity extends AppCompatActivity {
         progressDialog.show();
 
 
-        AndroidNetworking.post("https://prtn.ir/dataprobot/slogin.php")
+        AndroidNetworking.post(MyConstant.URL_LOGIN)
                 .addBodyParameter(MyConstant.USER_NAME, userName)
                 .addBodyParameter(MyConstant.PASSWORD, password)
                 .setPriority(Priority.HIGH)

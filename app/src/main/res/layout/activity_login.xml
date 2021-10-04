@@ -13,7 +13,6 @@
         android:background="@color/navy_blue_900"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/tv_header_login"
         android:layout_width="match_parent"
@@ -35,8 +34,6 @@
         app:cardBackgroundColor="@color/white_100"
         app:cardCornerRadius="@dimen/card_login_radius"
         app:cardElevation="@dimen/card_login_elevation"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="@id/view_header"
         app:layout_constraintTop_toBottomOf="@id/view_header"
         app:strokeColor="@color/gold_300"
@@ -52,36 +49,28 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/til_style"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:hint="@string/username"
                 app:startIconDrawable="@drawable/ic_person_bold"
                 app:startIconTint="@color/navy_blue_900">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white_100"
-                    android:fontFamily="@font/peyda_regular"
-                    android:gravity="center|right"
+                    style="@style/tie_style"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/til_style"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:hint="@string/password"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:startIconTint="@color/navy_blue_900">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white_100"
-                    android:fontFamily="@font/peyda_regular"
-                    android:gravity="center|right"
+                    style="@style/tie_style"
                     android:inputType="textPassword"
 
                     />

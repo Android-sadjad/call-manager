@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.callmanager.R;
 import com.test.callmanager.models.SessionHistory;
-import com.test.callmanager.models.SessionInfo;
 
 import java.util.ArrayList;
 
@@ -39,36 +38,36 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-       holder.tvSupportName.setText("پشتیبان:"+sessionHistories.get(position).getSupportName());
-    holder.tvAmount.setText("مبلغ:"+sessionHistories.get(position).getPrice());
-    holder.tvAgentName.setText("نماینده:"+sessionHistories.get(position).getAgentName());
-    holder.tvPriority.setText("اولویت:"+sessionHistories.get(position).getPriority());
+        holder.tvSupportName.setText(context.getString(R.string.support) + sessionHistories.get(position).getSupportName());
+        holder.tvPrice.setText(context.getString(R.string.amount) + sessionHistories.get(position).getPrice());
+        holder.tvAgentName.setText(context.getString(R.string.agent_name) + sessionHistories.get(position).getAgentName());
+        holder.tvPriority.setText(context.getString(R.string.priority) + " : " + sessionHistories.get(position).getPriority());
 
-    switch (sessionHistories.get(position).getSituation()){
-        case "op":
-            holder.tvStatus.setText("وضعیت:"+"خاموش بودن تلفن");
-            break;
+        switch (sessionHistories.get(position).getStatus()) {
+            case MyConstant.OP:
+                holder.tvStatus.setText(context.getString(R.string.status) + context.getString(R.string.off_phone));
+                break;
 
-        case "nr":
-            holder.tvStatus.setText("وضعیت:"+"برنداشتن تلفن");
+            case MyConstant.NR:
+                holder.tvStatus.setText(context.getString(R.string.status) + context.getString(R.string.no_response));
 
-            break;
+                break;
 
-        case "ft":
-            holder.tvStatus.setText("وضعیت:"+"عدم انجام تراکنش");
+            case MyConstant.FT:
+                holder.tvStatus.setText(context.getString(R.string.status) + context.getString(R.string.failure_transaction));
 
-            break;
+                break;
 
-        case "sf":
-            holder.tvStatus.setText("وضعیت:"+"تراکنش موفق");
+            case MyConstant.SF:
+                holder.tvStatus.setText(context.getString(R.string.status) + context.getString(R.string.succsessfully_transaction));
 
-            break;
+                break;
 
-    }
+        }
 
-    holder.tvDate.setText("تاریخ:"+sessionHistories.get(position).getDate());
-    holder.tvDuration.setText("مدت جلسه:"+sessionHistories.get(position).getDuration()+" دقیقه");
-    holder.tvDescription.setText("توضیحات:\n"+sessionHistories.get(position).getDescription());
+        holder.tvDate.setText(context.getString(R.string.date) + sessionHistories.get(position).getDate());
+        holder.tvDuration.setText(context.getString(R.string.duratoin_meet) + " : " + sessionHistories.get(position).getDuration() + " دقیقه");
+        holder.tvDescription.setText(context.getString(R.string.description) + ":\n" + sessionHistories.get(position).getDescription());
 
     }
 
@@ -81,10 +80,10 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
 
 
         TextView tvSupportName;
-        TextView tvAmount;
         TextView tvAgentName;
-        TextView tvPriority;
         TextView tvStatus;
+        TextView tvPriority;
+        TextView tvPrice;
         TextView tvDate;
         TextView tvDuration;
         TextView tvDescription;
@@ -93,14 +92,13 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
             super(itemView);
 
             tvSupportName = itemView.findViewById(R.id.tv_support);
-            tvAmount = itemView.findViewById(R.id.tv_price);
+            tvPrice = itemView.findViewById(R.id.tv_price);
             tvAgentName = itemView.findViewById(R.id.tv_agent_name);
             tvPriority = itemView.findViewById(R.id.tv_priority_item);
             tvStatus = itemView.findViewById(R.id.tv_situation);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvDuration = itemView.findViewById(R.id.tv_duration);
             tvDescription = itemView.findViewById(R.id.tv_description);
-
 
 
         }

@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         init();
-
 
 
     }
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
 
-        AndroidNetworking.post("https://prtn.ir/dataprobot/getscodes.php")
+        AndroidNetworking.post(MyConstant.URL_USER_CODES)
                 .addBodyParameter(MyConstant.SID, sId)
                 .setPriority(Priority.HIGH)
                 .build()
@@ -116,63 +114,57 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     private void getSessionList() {
 
         ArrayList<SessionInfo> sessionInfoList = new ArrayList<>();
 
-            AndroidNetworking.post("https://prtn.ir/dataprobot/getsessions.php")
-                    .addBodyParameter(MyConstant.SID, sId)
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .getAsJSONArray(new JSONArrayRequestListener() {
+        AndroidNetworking.post(MyConstant.URL_SESSIONS_LIST)
+                .addBodyParameter(MyConstant.SID, sId)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
 
-                        @Override
-                        public void onResponse(JSONArray response) {
-
-
-                            try {
-                                for (int i = 0; i < response.length(); i++) {
-
-                                    JSONObject jsonObjectSessionInfo = response.getJSONObject(i);
-                                    SessionInfo sessionInfo = new SessionInfo();
-
-                                    sessionInfo.setId(jsonObjectSessionInfo.getString(MyConstant.ID));
-                                    sessionInfo.setTitle(jsonObjectSessionInfo.getString(MyConstant.TITLE));
-                                    sessionInfo.setCity(jsonObjectSessionInfo.getString(MyConstant.CITY));
-                                    sessionInfo.setArea(jsonObjectSessionInfo.getString(MyConstant.AREA));
-                                    sessionInfo.setPhoneNumber(jsonObjectSessionInfo.getString(MyConstant.PHONE_NUMBER));
-
-                                    sessionInfoList.add(sessionInfo);
-
-                                }
-                                progressDialog.cancel();
-                                setUpList(sessionInfoList);
+                    @Override
+                    public void onResponse(JSONArray response) {
 
 
-                            } catch (JSONException e) {
-                                Toast.makeText(MainActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
-                                e.printStackTrace();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject jsonObjectSessionInfo = response.getJSONObject(i);
+                                SessionInfo sessionInfo = new SessionInfo();
+
+                                sessionInfo.setId(jsonObjectSessionInfo.getString(MyConstant.ID));
+                                sessionInfo.setTitle(jsonObjectSessionInfo.getString(MyConstant.TITLE));
+                                sessionInfo.setCity(jsonObjectSessionInfo.getString(MyConstant.CITY));
+                                sessionInfo.setArea(jsonObjectSessionInfo.getString(MyConstant.AREA));
+                                sessionInfo.setPhoneNumber(jsonObjectSessionInfo.getString(MyConstant.PHONE_NUMBER));
+
+                                sessionInfoList.add(sessionInfo);
+
                             }
-
-                        }
-
-                        @Override
-                        public void onError(ANError anError) {
                             progressDialog.cancel();
-                            Toast.makeText(MainActivity.this, getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                            setUpList(sessionInfoList);
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(MainActivity.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
                         }
 
+                    }
 
-                    });
+                    @Override
+                    public void onError(ANError anError) {
+                        progressDialog.cancel();
+                        Toast.makeText(MainActivity.this, getString(R.string.server_error), Toast.LENGTH_LONG).show();
+                    }
 
 
-
-
+                });
 
 
     }
-
 
     private void setUpList(ArrayList<SessionInfo> sessionInfoList) {
 

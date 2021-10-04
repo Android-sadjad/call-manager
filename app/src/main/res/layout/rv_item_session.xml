@@ -61,12 +61,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
 
-                    <TextView
-                        android:id="@+id/tv_support"
-                        style="@style/tv_session_style"
-                        android:text="@string/support" />
-
-
+                <TextView
+                    android:id="@+id/tv_support"
+                    style="@style/tv_session_style"
+                    android:text="@string/support" />
 
 
                 <TextView

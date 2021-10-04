@@ -55,7 +55,7 @@ public class SessionActiviy extends AppCompatActivity {
 
         findViews();
         init();
-        getList();
+        getHistoryList();
         configuration();
     }
 
@@ -73,13 +73,13 @@ public class SessionActiviy extends AppCompatActivity {
 
     }
 
-    private void init(){
-        progressDialog=new ProgressDialog(SessionActiviy.this);
+    private void init() {
+        progressDialog = new ProgressDialog(SessionActiviy.this);
         progressDialog.setMessage(getString(R.string.getting_your_info));
         progressDialog.show();
 
 
-        sessionInfo= (SessionInfo) getIntent().getSerializableExtra(MyConstant.SESSION_INFO);
+        sessionInfo = (SessionInfo) getIntent().getSerializableExtra(MyConstant.SESSION_INFO);
 
         tvTitle.setText(sessionInfo.getTitle());
         tvPhone.setText(sessionInfo.getPhoneNumber());
@@ -89,27 +89,27 @@ public class SessionActiviy extends AppCompatActivity {
 
     }
 
-    private void getList() {
+    private void getHistoryList() {
 
 
         ArrayList<SessionHistory> sessionHistoriesList = new ArrayList<>();
-        String rlId =sessionInfo.getId().toString().trim();
+        String rlId = sessionInfo.getId().toString().trim();
 
 
-        AndroidNetworking.post("https://prtn.ir/dataprobot/gethistory.php")
-                .addBodyParameter(MyConstant.RL_ID,rlId)
+        AndroidNetworking.post(MyConstant.URL_HISTORY_LIST)
+                .addBodyParameter(MyConstant.RL_ID, rlId)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                        for (int i = 0; i <response.length() ; i++) {
+                            for (int i = 0; i < response.length(); i++) {
 
-                                JSONObject jsonObjectSessionHistory=response.getJSONObject(i);
-                                SessionHistory sessionHistory=new SessionHistory();
+                                JSONObject jsonObjectSessionHistory = response.getJSONObject(i);
+                                SessionHistory sessionHistory = new SessionHistory();
                                 sessionHistory.setAgentName(jsonObjectSessionHistory.getString(MyConstant.RL_NAME));
-                                sessionHistory.setSituation(jsonObjectSessionHistory.getString(MyConstant.M_status));
+                                sessionHistory.setStatus(jsonObjectSessionHistory.getString(MyConstant.M_status));
                                 sessionHistory.setPriority(jsonObjectSessionHistory.getString(MyConstant.M_PRIORITY));
                                 sessionHistory.setDate(jsonObjectSessionHistory.getString(MyConstant.M_DATE));
                                 sessionHistory.setDuration(jsonObjectSessionHistory.getString(MyConstant.M_DURATION));
@@ -119,15 +119,15 @@ public class SessionActiviy extends AppCompatActivity {
 
                                 sessionHistoriesList.add(sessionHistory);
 
-                        }
+                            }
 
                             progressDialog.cancel();
                             setUpList(sessionHistoriesList);
 
-                    } catch (JSONException e) {
+                        } catch (JSONException e) {
                             Toast.makeText(SessionActiviy.this, getString(R.string.unknown_error), Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -136,61 +136,6 @@ public class SessionActiviy extends AppCompatActivity {
                         Toast.makeText(SessionActiviy.this, getString(R.string.server_error), Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-
-
-
-
-
-        //
-//        JSONArray jsonArrayHistoryList=new JSONArray();
-//
-//        JSONObject jsonObjectHistory=new JSONObject();
-//        try {
-//            jsonObjectHistory.put(MyConstant.SUPPORT_NAME,"پشتیبان:مهدی");
-//            jsonObjectHistory.put(MyConstant.AGENT_NAME,"نماینده:محمد");
-//            jsonObjectHistory.put(MyConstant.SITUATION,"وضعیت:انجام شده");
-//            jsonObjectHistory.put(MyConstant.PRICE,"مبلغ:120000");
-//            jsonObjectHistory.put(MyConstant.PRIORITY,"اولیت : 4");
-//            jsonObjectHistory.put(MyConstant.DATE,"تاریخ :1400/06/20");
-//            jsonObjectHistory.put(MyConstant.MEETING_DURATION,"مدت جلسه:20 دقیقه");
-//            jsonObjectHistory.put(MyConstant.DESCRIPTION,"توضیحات :\nجلسه بین دانشجویان سجاد و فردوسی");
-//
-//
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//        jsonArrayHistoryList.put(jsonObjectHistory);
-//
-//
-//        for (int i=0;i<jsonArrayHistoryList.length();i++){
-//
-//            JSONObject jsonObject =jsonArrayHistoryList.getJSONObject(i);
-//            SessionHistory sessionHistory=new SessionHistory();
-//
-//            sessionHistory.setSupportName(jsonObject.getString(MyConstant.SUPPORT_NAME));
-//            sessionHistory.setAgentName(jsonObject.getString(MyConstant.AGENT_NAME));
-//            sessionHistory.setSituation(jsonObject.getString(MyConstant.SITUATION));
-//            sessionHistory.setPrice(jsonObject.getString(MyConstant.PRICE));
-//            sessionHistory.setPriority(jsonObject.getString(MyConstant.PRIORITY));
-//            sessionHistory.setDate(jsonObject.getString(MyConstant.DATE));
-//            sessionHistory.setDuration(jsonObject.getString(MyConstant.MEETING_DURATION));
-//            sessionHistory.setDescription(jsonObject.getString(MyConstant.DESCRIPTION));
-//
-//            sessionHistories.add(sessionHistory);
-//        }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-
 
     }
 
@@ -225,9 +170,9 @@ public class SessionActiviy extends AppCompatActivity {
             public void onClick(View v) {
                 callSelected = false;
 
-                Intent intent=new Intent(SessionActiviy.this, ResultActivity.class);
-                intent.putExtra(MyConstant.SESSION_INFO,sessionInfo);
-                startActivityForResult(intent,MyConstant.REQUEST_CODE);
+                Intent intent = new Intent(SessionActiviy.this, ResultActivity.class);
+                intent.putExtra(MyConstant.SESSION_INFO, sessionInfo);
+                startActivityForResult(intent, MyConstant.REQUEST_CODE);
 
             }
         });
@@ -238,8 +183,11 @@ public class SessionActiviy extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==MyConstant.REQUEST_CODE&&resultCode==MyConstant.RESULT_CODE){
-            getList();
+
+
+        if (requestCode == MyConstant.REQUEST_CODE && resultCode == MyConstant.RESULT_CODE) {
+
+            getHistoryList();
 
         }
 
@@ -249,7 +197,7 @@ public class SessionActiviy extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (callSelected) {
-            Toast.makeText(this, "لطفا ابتدا نتیجه جلسه را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.please_enter_result), Toast.LENGTH_SHORT).show();
 
         } else
             finish();

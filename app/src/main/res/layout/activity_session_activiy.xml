@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,9 +20,9 @@
         app:strokeWidth="@dimen/card_session_stroke_width">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:padding="@dimen/_15sdp">
 
             <LinearLayout
@@ -76,16 +75,14 @@
         android:id="@+id/cv_call"
         style="@style/cv_session_activity_style"
         app:layout_constraintBottom_toBottomOf="@id/cv_profile"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/cv_result"
-        app:layout_constraintTop_toBottomOf="@id/cv_profile"
-        >
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_profile">
 
         <TextView
             android:id="@+id/tv_call"
-           style="@style/btn_session_activity_style"
-            android:text="@string/call"
-             />
+            style="@style/btn_session_activity_style"
+            android:text="@string/call" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -94,14 +91,12 @@
         app:layout_constraintBottom_toBottomOf="@id/cv_profile"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/cv_call"
-        app:layout_constraintTop_toBottomOf="@id/cv_profile"
-        >
+        app:layout_constraintTop_toBottomOf="@id/cv_profile">
 
         <TextView
             android:id="@+id/tv_result"
             style="@style/btn_session_activity_style"
-            android:text="نتیجه جلسه"
-            />
+            android:text="@string/meeting_result" />
     </com.google.android.material.card.MaterialCardView>
 
 
