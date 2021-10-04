@@ -66,7 +66,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHold
         }
 
         holder.tvDate.setText(context.getString(R.string.date) + sessionHistories.get(position).getDate());
-        holder.tvDuration.setText(context.getString(R.string.duratoin_meet) + " : " + sessionHistories.get(position).getDuration() + " دقیقه");
+        holder.tvDuration.setText(context.getString(R.string.duratoin_meet) + " : " + sessionHistories.get(position).getDuration() + context.getString(R.string.minute));
         holder.tvDescription.setText(context.getString(R.string.description) + ":\n" + sessionHistories.get(position).getDescription());
 
     }
