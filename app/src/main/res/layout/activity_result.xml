@@ -167,7 +167,7 @@
                         android:id="@+id/et_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="YYYY"
+                        android:hint="@string/year"
 
                         android:inputType="number"
                         android:maxLength="4" />
@@ -175,14 +175,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="/"
+                        android:text="@string/slash"
                         android:textSize="@dimen/tv_slash_text_size" />
 
                     <EditText
                         android:id="@+id/et_month"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="MM"
+                        android:hint="@string/month"
                         android:inputType="number"
 
                         android:maxLength="2" />
@@ -190,7 +190,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="/"
+                        android:text="@string/slash"
                         android:textSize="@dimen/tv_slash_text_size" />
 
                     <EditText
@@ -198,7 +198,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_15sdp"
-                        android:hint="DD"
+                        android:hint="@string/days"
 
                         android:inputType="number"
                         android:maxLength="2" />

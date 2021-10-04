@@ -44,6 +44,10 @@
 
     <string name="rial">ریال</string>
     <string name="minute">دقیقه</string>
+    <string name="days">DD</string>
+    <string name="month">MM</string>
+    <string name="year">YYYY</string>
+    <string name="slash">/</string>
     <string name="need_internet">اتصال به اینترنت برقرار نیست</string>
     <string name="one">1</string>
     <string name="unknown_error">خطای ناشناخته</string>
