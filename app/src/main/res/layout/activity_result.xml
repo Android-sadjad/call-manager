@@ -165,42 +165,29 @@
 
                     <EditText
                         android:id="@+id/et_year"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                       style="@style/date_format"
                         android:hint="@string/year"
 
-                        android:inputType="number"
                         android:maxLength="4" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/slash"
-                        android:textSize="@dimen/tv_slash_text_size" />
+                        style="@style/slash_date_format" />
 
                     <EditText
                         android:id="@+id/et_month"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:hint="@string/month"
-                        android:inputType="number"
-
+                        style="@style/date_format"
                         android:maxLength="2" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/slash"
-                        android:textSize="@dimen/tv_slash_text_size" />
+                      style="@style/slash_date_format"
+                       />
 
                     <EditText
                         android:id="@+id/et_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:hint="@string/days"
-
-                        android:inputType="number"
+                      style="@style/date_format"
                         android:maxLength="2" />
 
                     <TextView

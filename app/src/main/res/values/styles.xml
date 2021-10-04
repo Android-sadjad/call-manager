@@ -62,4 +62,18 @@
 
     </style>
 
+    <style name="date_format">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="slash_date_format">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/slash</item>
+        <item name="android:textSize">@dimen/tv_slash_text_size</item>
+    </style>
+
+
 </resources>
